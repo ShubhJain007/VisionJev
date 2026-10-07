@@ -49,6 +49,9 @@ accuracy; at ≥ 0.8 it covers 61% at 95.0%.
 | B3 `qwen4b-v6b3` | Qwen3-VL-4B | 82.3% | round-3 generators, judge sets, UI, CAD |
 | **B4 `qwen4b-v6b4`** | Qwen3-VL-4B | **82.7%** | teacher rounds 1+2, ECE 0.071 → 0.032 |
 
+For the full technical write-up with flowcharts (model, objective, data pipeline, teacher distillation, stages,
+evaluation loop, pod automation, serving), see **[docs/METHODOLOGY.md](docs/METHODOLOGY.md)**.
+
 Every number above is a record in [`project/results/experiments.jsonl`](project/results/experiments.jsonl) (197
 records, each with its full config, environment, dataset revisions and licences). The readable index is
 [`project/results/EXPERIMENTS.md`](project/results/EXPERIMENTS.md).
@@ -80,16 +83,19 @@ Details and the full tables are in [`project/UPDATES.md`](project/UPDATES.md).
 
 ## How it works
 
+In short (details, diagrams and formulas in [docs/METHODOLOGY.md](docs/METHODOLOGY.md)):
+
+
 - **Typed heads, not text generation.** The options arrive as text at run time, so there is no fixed label space.
   The sequence is image tokens + state text + question + one line per option; each option's logit is read at the end
   of its line by a small bidirectional head on top of the backbone. `choice` is a softmax over option lines, `noul` a
   two-way softmax, `score` a softmax over levels with an expected level.
-- **Option-order bias** is removed with block attention over the option lines, shared positions and per-draw option
-  shuffling.
+- **Option-order bias** is handled by reshuffling the options every time a row is drawn in training, and optionally
+  by averaging over several option orders at inference.
 - **Training** uses a proper-scoring-rule objective (Laya's RLCD reward against the gold target, plus soft
-  cross-entropy), then per-head temperature calibration. Optional rationale ("notes") supervision, an abstain head
-  and an act/escalate head.
-- **Data**: ~120 sets mixed by weight in every batch. Human-labelled sets come first (documents, UI, screens,
+  cross-entropy) with option logits capped at ±10, then per-type temperature calibration. Short rationales are
+  trained as an auxiliary language-model loss, and an abstain head learns when a question cannot be answered.
+- **Data**: 143 sets mixed by weight in every batch. Human-labelled sets come first (documents, UI, screens,
   CAD, agent trajectories, judging); exact-label synthetic generators fill the gaps (dates, units, policies, code,
   workflows); teacher rounds from a larger model add hard reasoning cases, filtered by agreement. Every dataset passes
   a licence gate and a schema validator before it can enter a mix.
