@@ -1,0 +1,908 @@
+{
+ "gpu": "NVIDIA GeForce RTX 4070 Ti SUPER",
+ "trained_max_pixels": 589824,
+ "tau": 0.8,
+ "table": {
+  "all": {
+   "n": 1300,
+   "768": {
+    "acc": 88.8,
+    "p50_ms": 112.6,
+    "mean_ms": 107.9,
+    "tokens": 510
+   },
+   "640": {
+    "acc": 88.3,
+    "p50_ms": 90.1,
+    "mean_ms": 85.7,
+    "tokens": 406,
+    "cascade": {
+     "acc": 88.8,
+     "mean_ms": 106.4,
+     "rerun_share": 0.197
+    }
+   },
+   "512": {
+    "acc": 87.2,
+    "p50_ms": 67.7,
+    "mean_ms": 66.2,
+    "tokens": 294,
+    "cascade": {
+     "acc": 88.2,
+     "mean_ms": 90.3,
+     "rerun_share": 0.223
+    }
+   },
+   "384": {
+    "acc": 83.4,
+    "p50_ms": 87.7,
+    "mean_ms": 84.9,
+    "tokens": 199,
+    "cascade": {
+     "acc": 87.7,
+     "mean_ms": 116.0,
+     "rerun_share": 0.28
+    }
+   },
+   "256": {
+    "acc": 73.8,
+    "p50_ms": 77.0,
+    "mean_ms": 76.2,
+    "tokens": 121,
+    "cascade": {
+     "acc": 87.0,
+     "mean_ms": 127.0,
+     "rerun_share": 0.44
+    }
+   }
+  },
+  "documents": {
+   "n": 400,
+   "768": {
+    "acc": 92.8,
+    "p50_ms": 121.7,
+    "mean_ms": 115.6,
+    "tokens": 534
+   },
+   "640": {
+    "acc": 91.8,
+    "p50_ms": 90.8,
+    "mean_ms": 88.8,
+    "tokens": 407,
+    "cascade": {
+     "acc": 92.8,
+     "mean_ms": 108.1,
+     "rerun_share": 0.15
+    }
+   },
+   "512": {
+    "acc": 87.8,
+    "p50_ms": 68.2,
+    "mean_ms": 68.0,
+    "tokens": 294,
+    "cascade": {
+     "acc": 91.2,
+     "mean_ms": 95.4,
+     "rerun_share": 0.21
+    }
+   },
+   "384": {
+    "acc": 80.8,
+    "p50_ms": 90.4,
+    "mean_ms": 93.1,
+    "tokens": 193,
+    "cascade": {
+     "acc": 91.5,
+     "mean_ms": 138.0,
+     "rerun_share": 0.343
+    }
+   },
+   "256": {
+    "acc": 70.5,
+    "p50_ms": 75.2,
+    "mean_ms": 74.2,
+    "tokens": 116,
+    "cascade": {
+     "acc": 91.2,
+     "mean_ms": 137.1,
+     "rerun_share": 0.475
+    }
+   }
+  },
+  "screens": {
+   "n": 500,
+   "768": {
+    "acc": 86.0,
+    "p50_ms": 111.0,
+    "mean_ms": 113.9,
+    "tokens": 566
+   },
+   "640": {
+    "acc": 85.6,
+    "p50_ms": 90.3,
+    "mean_ms": 91.9,
+    "tokens": 464,
+    "cascade": {
+     "acc": 86.0,
+     "mean_ms": 118.5,
+     "rerun_share": 0.236
+    }
+   },
+   "512": {
+    "acc": 85.6,
+    "p50_ms": 67.3,
+    "mean_ms": 68.3,
+    "tokens": 321,
+    "cascade": {
+     "acc": 85.6,
+     "mean_ms": 96.9,
+     "rerun_share": 0.254
+    }
+   },
+   "384": {
+    "acc": 83.4,
+    "p50_ms": 93.1,
+    "mean_ms": 95.6,
+    "tokens": 221,
+    "cascade": {
+     "acc": 84.4,
+     "mean_ms": 128.4,
+     "rerun_share": 0.292
+    }
+   },
+   "256": {
+    "acc": 67.6,
+    "p50_ms": 80.3,
+    "mean_ms": 81.9,
+    "tokens": 139,
+    "cascade": {
+     "acc": 83.2,
+     "mean_ms": 147.7,
+     "rerun_share": 0.576
+    }
+   }
+  },
+  "photos": {
+   "n": 400,
+   "768": {
+    "acc": 88.5,
+    "p50_ms": 110.8,
+    "mean_ms": 92.6,
+    "tokens": 415
+   },
+   "640": {
+    "acc": 88.2,
+    "p50_ms": 88.5,
+    "mean_ms": 74.9,
+    "tokens": 333,
+    "cascade": {
+     "acc": 88.5,
+     "mean_ms": 89.6,
+     "rerun_share": 0.195
+    }
+   },
+   "512": {
+    "acc": 88.5,
+    "p50_ms": 67.8,
+    "mean_ms": 61.9,
+    "tokens": 261,
+    "cascade": {
+     "acc": 88.5,
+     "mean_ms": 77.0,
+     "rerun_share": 0.198
+    }
+   },
+   "384": {
+    "acc": 86.0,
+    "p50_ms": 44.9,
+    "mean_ms": 63.2,
+    "tokens": 177,
+    "cascade": {
+     "acc": 88.0,
+     "mean_ms": 78.5,
+     "rerun_share": 0.203
+    }
+   },
+   "256": {
+    "acc": 84.8,
+    "p50_ms": 72.4,
+    "mean_ms": 71.1,
+    "tokens": 102,
+    "cascade": {
+     "acc": 87.5,
+     "mean_ms": 90.9,
+     "rerun_share": 0.235
+    }
+   }
+  },
+  "ac_element": {
+   "n": 100,
+   "768": {
+    "acc": 96.0,
+    "p50_ms": 110.0,
+    "mean_ms": 110.6,
+    "tokens": 523
+   },
+   "640": {
+    "acc": 98.0,
+    "p50_ms": 89.5,
+    "mean_ms": 89.1,
+    "tokens": 451,
+    "cascade": {
+     "acc": 97.0,
+     "mean_ms": 92.4,
+     "rerun_share": 0.03
+    }
+   },
+   "512": {
+    "acc": 97.0,
+    "p50_ms": 66.9,
+    "mean_ms": 67.4,
+    "tokens": 304,
+    "cascade": {
+     "acc": 96.0,
+     "mean_ms": 71.8,
+     "rerun_share": 0.04
+    }
+   },
+   "384": {
+    "acc": 92.0,
+    "p50_ms": 90.2,
+    "mean_ms": 94.8,
+    "tokens": 210,
+    "cascade": {
+     "acc": 94.0,
+     "mean_ms": 108.0,
+     "rerun_share": 0.12
+    }
+   },
+   "256": {
+    "acc": 43.0,
+    "p50_ms": 79.3,
+    "mean_ms": 83.6,
+    "tokens": 129,
+    "cascade": {
+     "acc": 89.0,
+     "mean_ms": 162.8,
+     "rerun_share": 0.72
+    }
+   }
+  },
+  "ac_goal_reached": {
+   "n": 100,
+   "768": {
+    "acc": 75.0,
+    "p50_ms": 109.9,
+    "mean_ms": 109.7,
+    "tokens": 527
+   },
+   "640": {
+    "acc": 72.0,
+    "p50_ms": 89.6,
+    "mean_ms": 89.2,
+    "tokens": 455,
+    "cascade": {
+     "acc": 75.0,
+     "mean_ms": 141.7,
+     "rerun_share": 0.48
+    }
+   },
+   "512": {
+    "acc": 73.0,
+    "p50_ms": 66.9,
+    "mean_ms": 67.1,
+    "tokens": 308,
+    "cascade": {
+     "acc": 75.0,
+     "mean_ms": 127.3,
+     "rerun_share": 0.55
+    }
+   },
+   "384": {
+    "acc": 78.0,
+    "p50_ms": 93.7,
+    "mean_ms": 95.6,
+    "tokens": 214,
+    "cascade": {
+     "acc": 74.0,
+     "mean_ms": 156.9,
+     "rerun_share": 0.56
+    }
+   },
+   "256": {
+    "acc": 77.0,
+    "p50_ms": 80.2,
+    "mean_ms": 83.0,
+    "tokens": 133,
+    "cascade": {
+     "acc": 75.0,
+     "mean_ms": 163.0,
+     "rerun_share": 0.73
+    }
+   }
+  },
+  "ac_next_action": {
+   "n": 100,
+   "768": {
+    "acc": 78.0,
+    "p50_ms": 110.7,
+    "mean_ms": 111.9,
+    "tokens": 591
+   },
+   "640": {
+    "acc": 77.0,
+    "p50_ms": 103.8,
+    "mean_ms": 97.7,
+    "tokens": 519,
+    "cascade": {
+     "acc": 78.0,
+     "mean_ms": 148.3,
+     "rerun_share": 0.45
+    }
+   },
+   "512": {
+    "acc": 78.0,
+    "p50_ms": 68.8,
+    "mean_ms": 71.6,
+    "tokens": 372,
+    "cascade": {
+     "acc": 78.0,
+     "mean_ms": 123.3,
+     "rerun_share": 0.46
+    }
+   },
+   "384": {
+    "acc": 76.0,
+    "p50_ms": 104.5,
+    "mean_ms": 102.9,
+    "tokens": 278,
+    "cascade": {
+     "acc": 78.0,
+     "mean_ms": 162.3,
+     "rerun_share": 0.53
+    }
+   },
+   "256": {
+    "acc": 76.0,
+    "p50_ms": 84.6,
+    "mean_ms": 87.6,
+    "tokens": 197,
+    "cascade": {
+     "acc": 76.0,
+     "mean_ms": 146.0,
+     "rerun_share": 0.52
+    }
+   }
+  },
+  "aokvqa": {
+   "n": 100,
+   "768": {
+    "acc": 82.0,
+    "p50_ms": 49.0,
+    "mean_ms": 53.0,
+    "tokens": 226
+   },
+   "640": {
+    "acc": 82.0,
+    "p50_ms": 49.0,
+    "mean_ms": 52.9,
+    "tokens": 226,
+    "cascade": {
+     "acc": 82.0,
+     "mean_ms": 66.9,
+     "rerun_share": 0.27
+    }
+   },
+   "512": {
+    "acc": 82.0,
+    "p50_ms": 48.9,
+    "mean_ms": 52.9,
+    "tokens": 226,
+    "cascade": {
+     "acc": 82.0,
+     "mean_ms": 66.9,
+     "rerun_share": 0.27
+    }
+   },
+   "384": {
+    "acc": 78.0,
+    "p50_ms": 83.9,
+    "mean_ms": 87.0,
+    "tokens": 169,
+    "cascade": {
+     "acc": 81.0,
+     "mean_ms": 100.0,
+     "rerun_share": 0.25
+    }
+   },
+   "256": {
+    "acc": 81.0,
+    "p50_ms": 71.2,
+    "mean_ms": 74.3,
+    "tokens": 94,
+    "cascade": {
+     "acc": 82.0,
+     "mean_ms": 88.3,
+     "rerun_share": 0.27
+    }
+   }
+  },
+  "chart_qa": {
+   "n": 100,
+   "768": {
+    "acc": 99.0,
+    "p50_ms": 66.5,
+    "mean_ms": 71.4,
+    "tokens": 300
+   },
+   "640": {
+    "acc": 99.0,
+    "p50_ms": 65.9,
+    "mean_ms": 69.0,
+    "tokens": 288,
+    "cascade": {
+     "acc": 99.0,
+     "mean_ms": 70.7,
+     "rerun_share": 0.02
+    }
+   },
+   "512": {
+    "acc": 99.0,
+    "p50_ms": 65.9,
+    "mean_ms": 61.1,
+    "tokens": 253,
+    "cascade": {
+     "acc": 99.0,
+     "mean_ms": 62.8,
+     "rerun_share": 0.02
+    }
+   },
+   "384": {
+    "acc": 100.0,
+    "p50_ms": 86.0,
+    "mean_ms": 87.1,
+    "tokens": 181,
+    "cascade": {
+     "acc": 99.0,
+     "mean_ms": 89.8,
+     "rerun_share": 0.03
+    }
+   },
+   "256": {
+    "acc": 100.0,
+    "p50_ms": 72.6,
+    "mean_ms": 74.0,
+    "tokens": 107,
+    "cascade": {
+     "acc": 99.0,
+     "mean_ms": 77.8,
+     "rerun_share": 0.04
+    }
+   }
+  },
+  "cord_total": {
+   "n": 100,
+   "768": {
+    "acc": 96.0,
+    "p50_ms": 121.4,
+    "mean_ms": 124.8,
+    "tokens": 584
+   },
+   "640": {
+    "acc": 95.0,
+    "p50_ms": 90.8,
+    "mean_ms": 94.6,
+    "tokens": 437,
+    "cascade": {
+     "acc": 96.0,
+     "mean_ms": 103.6,
+     "rerun_share": 0.08
+    }
+   },
+   "512": {
+    "acc": 96.0,
+    "p50_ms": 68.1,
+    "mean_ms": 69.9,
+    "tokens": 304,
+    "cascade": {
+     "acc": 96.0,
+     "mean_ms": 80.1,
+     "rerun_share": 0.09
+    }
+   },
+   "384": {
+    "acc": 93.0,
+    "p50_ms": 88.6,
+    "mean_ms": 91.4,
+    "tokens": 191,
+    "cascade": {
+     "acc": 96.0,
+     "mean_ms": 107.2,
+     "rerun_share": 0.13
+    }
+   },
+   "256": {
+    "acc": 87.0,
+    "p50_ms": 69.1,
+    "mean_ms": 61.1,
+    "tokens": 115,
+    "cascade": {
+     "acc": 95.0,
+     "mean_ms": 87.5,
+     "rerun_share": 0.2
+    }
+   }
+  },
+  "doclaynet_read_small": {
+   "n": 100,
+   "768": {
+    "acc": 99.0,
+    "p50_ms": 137.7,
+    "mean_ms": 132.5,
+    "tokens": 645
+   },
+   "640": {
+    "acc": 98.0,
+    "p50_ms": 95.8,
+    "mean_ms": 95.8,
+    "tokens": 469,
+    "cascade": {
+     "acc": 99.0,
+     "mean_ms": 101.0,
+     "rerun_share": 0.04
+    }
+   },
+   "512": {
+    "acc": 96.0,
+    "p50_ms": 70.5,
+    "mean_ms": 70.2,
+    "tokens": 325,
+    "cascade": {
+     "acc": 99.0,
+     "mean_ms": 84.9,
+     "rerun_share": 0.11
+    }
+   },
+   "384": {
+    "acc": 87.0,
+    "p50_ms": 100.8,
+    "mean_ms": 102.4,
+    "tokens": 213,
+    "cascade": {
+     "acc": 96.0,
+     "mean_ms": 137.9,
+     "rerun_share": 0.27
+    }
+   },
+   "256": {
+    "acc": 58.0,
+    "p50_ms": 87.7,
+    "mean_ms": 86.2,
+    "tokens": 133,
+    "cascade": {
+     "acc": 94.0,
+     "mean_ms": 173.7,
+     "rerun_share": 0.66
+    }
+   }
+  },
+  "oi_count": {
+   "n": 100,
+   "768": {
+    "acc": 88.0,
+    "p50_ms": 121.9,
+    "mean_ms": 137.1,
+    "tokens": 611
+   },
+   "640": {
+    "acc": 88.0,
+    "p50_ms": 93.9,
+    "mean_ms": 99.6,
+    "tokens": 448,
+    "cascade": {
+     "acc": 88.0,
+     "mean_ms": 128.1,
+     "rerun_share": 0.2
+    }
+   },
+   "512": {
+    "acc": 89.0,
+    "p50_ms": 68.5,
+    "mean_ms": 72.1,
+    "tokens": 303,
+    "cascade": {
+     "acc": 88.0,
+     "mean_ms": 99.3,
+     "rerun_share": 0.19
+    }
+   },
+   "384": {
+    "acc": 87.0,
+    "p50_ms": 84.5,
+    "mean_ms": 79.8,
+    "tokens": 191,
+    "cascade": {
+     "acc": 88.0,
+     "mean_ms": 107.4,
+     "rerun_share": 0.2
+    }
+   },
+   "256": {
+    "acc": 86.0,
+    "p50_ms": 70.0,
+    "mean_ms": 66.0,
+    "tokens": 117,
+    "cascade": {
+     "acc": 87.0,
+     "mean_ms": 100.1,
+     "rerun_share": 0.24
+    }
+   }
+  },
+  "rico_screenqa": {
+   "n": 100,
+   "768": {
+    "acc": 90.0,
+    "p50_ms": 112.7,
+    "mean_ms": 112.8,
+    "tokens": 563
+   },
+   "640": {
+    "acc": 89.0,
+    "p50_ms": 90.6,
+    "mean_ms": 90.9,
+    "tokens": 443,
+    "cascade": {
+     "acc": 90.0,
+     "mean_ms": 103.4,
+     "rerun_share": 0.11
+    }
+   },
+   "512": {
+    "acc": 91.0,
+    "p50_ms": 67.3,
+    "mean_ms": 67.4,
+    "tokens": 305,
+    "cascade": {
+     "acc": 90.0,
+     "mean_ms": 76.5,
+     "rerun_share": 0.08
+    }
+   },
+   "384": {
+    "acc": 87.0,
+    "p50_ms": 88.1,
+    "mean_ms": 90.7,
+    "tokens": 197,
+    "cascade": {
+     "acc": 88.0,
+     "mean_ms": 102.0,
+     "rerun_share": 0.1
+    }
+   },
+   "256": {
+    "acc": 88.0,
+    "p50_ms": 78.4,
+    "mean_ms": 78.9,
+    "tokens": 113,
+    "cascade": {
+     "acc": 90.0,
+     "mean_ms": 104.8,
+     "rerun_share": 0.23
+    }
+   }
+  },
+  "synth_invoice_doc": {
+   "n": 100,
+   "768": {
+    "acc": 77.0,
+    "p50_ms": 121.9,
+    "mean_ms": 133.8,
+    "tokens": 609
+   },
+   "640": {
+    "acc": 75.0,
+    "p50_ms": 90.1,
+    "mean_ms": 95.9,
+    "tokens": 434,
+    "cascade": {
+     "acc": 77.0,
+     "mean_ms": 157.1,
+     "rerun_share": 0.46
+    }
+   },
+   "512": {
+    "acc": 60.0,
+    "p50_ms": 68.2,
+    "mean_ms": 70.6,
+    "tokens": 294,
+    "cascade": {
+     "acc": 71.0,
+     "mean_ms": 153.9,
+     "rerun_share": 0.62
+    }
+   },
+   "384": {
+    "acc": 43.0,
+    "p50_ms": 89.8,
+    "mean_ms": 91.5,
+    "tokens": 188,
+    "cascade": {
+     "acc": 75.0,
+     "mean_ms": 217.2,
+     "rerun_share": 0.94
+    }
+   },
+   "256": {
+    "acc": 37.0,
+    "p50_ms": 71.3,
+    "mean_ms": 75.6,
+    "tokens": 111,
+    "cascade": {
+     "acc": 77.0,
+     "mean_ms": 209.4,
+     "rerun_share": 1.0
+    }
+   }
+  },
+  "textvqa": {
+   "n": 100,
+   "768": {
+    "acc": 100.0,
+    "p50_ms": 121.5,
+    "mean_ms": 126.4,
+    "tokens": 593
+   },
+   "640": {
+    "acc": 99.0,
+    "p50_ms": 91.0,
+    "mean_ms": 94.0,
+    "tokens": 429,
+    "cascade": {
+     "acc": 100.0,
+     "mean_ms": 95.3,
+     "rerun_share": 0.01
+    }
+   },
+   "512": {
+    "acc": 99.0,
+    "p50_ms": 68.4,
+    "mean_ms": 70.4,
+    "tokens": 285,
+    "cascade": {
+     "acc": 100.0,
+     "mean_ms": 74.4,
+     "rerun_share": 0.03
+    }
+   },
+   "384": {
+    "acc": 99.0,
+    "p50_ms": 43.8,
+    "mean_ms": 44.3,
+    "tokens": 175,
+    "cascade": {
+     "acc": 100.0,
+     "mean_ms": 47.9,
+     "rerun_share": 0.03
+    }
+   },
+   "256": {
+    "acc": 94.0,
+    "p50_ms": 75.5,
+    "mean_ms": 68.0,
+    "tokens": 99,
+    "cascade": {
+     "acc": 98.0,
+     "mean_ms": 84.2,
+     "rerun_share": 0.13
+    }
+   }
+  },
+  "ui_refexp": {
+   "n": 100,
+   "768": {
+    "acc": 91.0,
+    "p50_ms": 121.6,
+    "mean_ms": 124.8,
+    "tokens": 626
+   },
+   "640": {
+    "acc": 92.0,
+    "p50_ms": 93.0,
+    "mean_ms": 92.8,
+    "tokens": 454,
+    "cascade": {
+     "acc": 90.0,
+     "mean_ms": 106.6,
+     "rerun_share": 0.11
+    }
+   },
+   "512": {
+    "acc": 89.0,
+    "p50_ms": 67.6,
+    "mean_ms": 67.8,
+    "tokens": 316,
+    "cascade": {
+     "acc": 89.0,
+     "mean_ms": 85.4,
+     "rerun_share": 0.14
+    }
+   },
+   "384": {
+    "acc": 84.0,
+    "p50_ms": 90.4,
+    "mean_ms": 94.2,
+    "tokens": 208,
+    "cascade": {
+     "acc": 88.0,
+     "mean_ms": 112.8,
+     "rerun_share": 0.15
+    }
+   },
+   "256": {
+    "acc": 54.0,
+    "p50_ms": 76.3,
+    "mean_ms": 76.6,
+    "tokens": 124,
+    "cascade": {
+     "acc": 86.0,
+     "mean_ms": 161.8,
+     "rerun_share": 0.68
+    }
+   }
+  },
+  "vqav2_yesno": {
+   "n": 100,
+   "768": {
+    "acc": 84.0,
+    "p50_ms": 49.0,
+    "mean_ms": 53.8,
+    "tokens": 230
+   },
+   "640": {
+    "acc": 84.0,
+    "p50_ms": 49.0,
+    "mean_ms": 53.1,
+    "tokens": 230,
+    "cascade": {
+     "acc": 84.0,
+     "mean_ms": 68.0,
+     "rerun_share": 0.3
+    }
+   },
+   "512": {
+    "acc": 84.0,
+    "p50_ms": 49.0,
+    "mean_ms": 52.3,
+    "tokens": 230,
+    "cascade": {
+     "acc": 84.0,
+     "mean_ms": 67.2,
+     "rerun_share": 0.3
+    }
+   },
+   "384": {
+    "acc": 80.0,
+    "p50_ms": 41.5,
+    "mean_ms": 41.7,
+    "tokens": 174,
+    "cascade": {
+     "acc": 83.0,
+     "mean_ms": 58.6,
+     "rerun_share": 0.33
+    }
+   },
+   "256": {
+    "acc": 78.0,
+    "p50_ms": 71.9,
+    "mean_ms": 75.9,
+    "tokens": 99,
+    "cascade": {
+     "acc": 83.0,
+     "mean_ms": 91.2,
+     "rerun_share": 0.3
+    }
+   }
+  }
+ }
+}

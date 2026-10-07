@@ -1,0 +1,263 @@
+{
+ "version": "mix_v6b4",
+ "alpha": 0.5,
+ "max_passes": 2,
+ "note": "Focused stage after B3 (2026-10-01, shares agreed with the user): 30% teacher-written hard questions (rounds 1+2, all as text, soft targets and rationales), 9% Laya typed decisions, hard generator / judge / human reasoning sets, 10% human-labelled Android / Rico / OmniACT screens, 5% procedural game screens (exact rule labels), 7% vision_objects (detection / localisation, counting, visual reasoning), CAD, and replay including the general text sets mix_v6b3 had dropped. About 36% of draws carry an image. No rendered-text pages (teacher_hard_img is built but not used).",
+ "domains": {
+  "gen3": {
+   "share": 0.03,
+   "datasets": [
+    "gen_deadline_chain",
+    "gen_period_count",
+    "gen_fx_aggregate",
+    "gen_lookup_chain",
+    "gen_cond_probability",
+    "gen_constraint_rank",
+    "gen_amended_policy"
+   ],
+   "dataset_weight": {
+    "gen_amended_policy": 1.5,
+    "gen_deadline_chain": 1.3,
+    "gen_fx_aggregate": 1.3
+   }
+  },
+  "judge_planted": {
+   "share": 0.04,
+   "datasets": [
+    "judge_step_check",
+    "judge_step_pair",
+    "judge_rubric_cap",
+    "judge_adequacy"
+   ]
+  },
+  "human_arith": {
+   "share": 0.05,
+   "datasets": [
+    "finqa_choice",
+    "convfinqa_choice",
+    "tatqa_choice",
+    "tabfact_noul",
+    "timeqa_choice"
+   ]
+  },
+  "human_judge": {
+   "share": 0.04,
+   "datasets": [
+    "summeval_pair",
+    "summeval_score",
+    "frank_factual",
+    "mqm_pair",
+    "mqm_major_error",
+    "faithdial_noul",
+    "begin_attribution",
+    "feedbackqa_score",
+    "helpsteer_score",
+    "helpsteer_pair"
+   ]
+  },
+  "logic_long": {
+   "share": 0.03,
+   "datasets": [
+    "bb_reasoning",
+    "proofwriter_owa",
+    "wanli_nli",
+    "quality_long",
+    "gsm8k_choice",
+    "svamp_choice",
+    "math_choice",
+    "strategyqa",
+    "ropes_choice"
+   ]
+  },
+  "teacher": {
+   "share": 0.3,
+   "datasets": [
+    "teacher_hard",
+    "teacher_hard2"
+   ]
+  },
+  "agent_code": {
+   "share": 0.03,
+   "datasets": [
+    "agent_verify_pair",
+    "agent_outcome",
+    "agent_next_action",
+    "agent_step_progress"
+   ],
+   "dataset_weight": {
+    "agent_verify_pair": 2.0,
+    "agent_next_action": 0.6
+   }
+  },
+  "ui": {
+   "share": 0.1,
+   "datasets": [
+    "ac_next_action",
+    "ac_element",
+    "ac_goal_reached",
+    "ui_refexp",
+    "ui_widget_caption",
+    "ui_widget_find",
+    "ui_element_type",
+    "ui_element_count",
+    "omniact_next_action"
+   ],
+   "dataset_weight": {
+    "omniact_next_action": 2.0
+   }
+  },
+  "cad": {
+   "share": 0.02,
+   "datasets": [
+    "cad_feature_count",
+    "cad_view_match",
+    "cad_dimension_read",
+    "cad_drawing_pair",
+    "cad_section_depth",
+    "cad_assembly",
+    "circuit_component_count"
+   ]
+  },
+  "laya_typed": {
+   "share": 0.09,
+   "datasets": [
+    "laya_typed",
+    "laya_typed_img",
+    "laya_typed_var",
+    "laya_typed_img_var"
+   ]
+  },
+  "replay_photo": {
+   "share": 0.03,
+   "datasets": [
+    "vqav2_yesno",
+    "textvqa",
+    "vizwiz_answerable",
+    "pets",
+    "eurosat",
+    "vqa_rad"
+   ]
+  },
+  "replay_document": {
+   "share": 0.03,
+   "datasets": [
+    "doclaynet_type",
+    "doclaynet_layout",
+    "doclaynet_read_small",
+    "doclaynet_read_large",
+    "cord_total",
+    "synth_invoice_doc",
+    "synth_refund_doc",
+    "synth_access_doc",
+    "synth_alert_doc",
+    "pii_detect",
+    "chart_qa",
+    "chart_score"
+   ]
+  },
+  "replay_ui": {
+   "share": 0.01,
+   "datasets": [
+    "synth_ui",
+    "rico_screenqa"
+   ]
+  },
+  "replay_code": {
+   "share": 0.01,
+   "datasets": [
+    "code_contests",
+    "code_choice",
+    "code_defect",
+    "synth_shell_risk",
+    "juliet_cwe",
+    "juliet_pair",
+    "primevul_cwe",
+    "primevul_pair",
+    "code_exec_pass",
+    "code_exec_pair",
+    "code_exec_output",
+    "commit_message",
+    "conala_snippet",
+    "taco_exec_pass",
+    "taco_exec_pair",
+    "wikisql_check",
+    "wikisql_pair",
+    "swe_file_loc",
+    "swe_patch_match",
+    "swe_test_fail",
+    "primevul_severity"
+   ]
+  },
+  "replay_support": {
+   "share": 0.01,
+   "datasets": [
+    "banking77",
+    "clinc_intent",
+    "clinc_scope",
+    "support_intent",
+    "massive_intent",
+    "support_verticals",
+    "minds14_intent",
+    "sgd_intent",
+    "multiwoz_intent"
+   ]
+  },
+  "replay_spatial_robot": {
+   "share": 0.01,
+   "datasets": [
+    "robot_task",
+    "robot_progress"
+   ]
+  },
+  "replay_text": {
+   "share": 0.05,
+   "datasets": [
+    "commonsense_qa",
+    "openbookqa",
+    "arc",
+    "boolq",
+    "snli",
+    "synth_invoice",
+    "synth_refund",
+    "synth_access",
+    "synth_alert",
+    "civil_toxicity",
+    "sms_spam",
+    "prompt_injection",
+    "jailbreak",
+    "belebele",
+    "xcopa",
+    "xwinograd",
+    "tweet_sentiment_ml"
+   ]
+  },
+  "vision_objects": {
+   "share": 0.07,
+   "datasets": [
+    "oi_presence",
+    "oi_where",
+    "oi_count",
+    "aokvqa",
+    "oi_relation",
+    "oi_framing"
+   ],
+   "dataset_weight": {
+    "oi_where": 2.0,
+    "oi_relation": 1.5,
+    "oi_framing": 1.5
+   }
+  },
+  "games": {
+   "share": 0.05,
+   "datasets": [
+    "game_tictactoe_move",
+    "game_connect4_win",
+    "game_maze_path",
+    "game_minesweeper_safe",
+    "game_2048_move",
+    "game_snake_safe",
+    "game_chess_attack"
+   ]
+  }
+ }
+}

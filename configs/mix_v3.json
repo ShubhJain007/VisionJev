@@ -1,0 +1,162 @@
+{
+  "version": "mix_v3",
+  "note": "mix_v2 + (2026-09-27) customer-support domain (intent sets moved from text_decision + MASSIVE, Bitext verticals, MINDS-14, SGD, MultiWOZ), multilingual domain (Belebele, XCOPA, XWinograd, tweet sentiment), code adds commit_message, conala_snippet, taco_exec_pass/pair, robotics domain (robot_task, robot_progress). Eval-only sets never appear here.",
+  "alpha": 0.5,
+  "max_passes": 2,
+  "domains": {
+    "photo": {
+      "share": 0.13,
+      "datasets": [
+        "aokvqa",
+        "vqav2_yesno",
+        "textvqa",
+        "vizwiz_answerable",
+        "pets",
+        "eurosat",
+        "vqa_rad",
+        "oi_presence",
+        "oi_count"
+      ]
+    },
+    "document": {
+      "share": 0.09,
+      "datasets": [
+        "doclaynet_type",
+        "doclaynet_layout",
+        "doclaynet_read_small",
+        "doclaynet_read_large",
+        "cord_total",
+        "synth_invoice_doc",
+        "synth_refund_doc",
+        "synth_access_doc",
+        "synth_alert_doc"
+      ]
+    },
+    "ui": {
+      "share": 0.06,
+      "datasets": [
+        "synth_ui"
+      ]
+    },
+    "quality": {
+      "share": 0.04,
+      "datasets": [
+        "synth_quality"
+      ]
+    },
+    "text_decision": {
+      "share": 0.11,
+      "datasets": [
+        "synth_invoice",
+        "synth_refund",
+        "synth_access",
+        "synth_alert",
+        "civil_toxicity",
+        "sms_spam",
+        "prompt_injection",
+        "jailbreak"
+      ]
+    },
+    "text_knowledge": {
+      "share": 0.07,
+      "datasets": [
+        "commonsense_qa",
+        "openbookqa",
+        "arc",
+        "boolq",
+        "snli"
+      ]
+    },
+    "code": {
+      "share": 0.14,
+      "datasets": [
+        "code_contests",
+        "code_choice",
+        "code_defect",
+        "synth_shell_risk",
+        "juliet_cwe",
+        "juliet_pair",
+        "primevul_cwe",
+        "primevul_pair",
+        "code_exec_pass",
+        "code_exec_pair",
+        "code_exec_output",
+        "commit_message",
+        "conala_snippet",
+        "taco_exec_pass",
+        "taco_exec_pair"
+      ],
+      "dataset_weight": {
+        "code_defect": 0.3
+      }
+    },
+    "variety": {
+      "share": 0.03,
+      "datasets": [
+        "synth_invoice_var",
+        "synth_refund_var",
+        "synth_access_var",
+        "synth_alert_var",
+        "synth_invoice_doc_var",
+        "synth_refund_doc_var",
+        "synth_shell_risk_var",
+        "synth_ui_var",
+        "synth_quality_var",
+        "banking77_var",
+        "clinc_intent_var",
+        "support_intent_var",
+        "commonsense_qa_var",
+        "arc_var",
+        "oi_count_var",
+        "code_choice_var"
+      ]
+    },
+    "spatial": {
+      "share": 0.04,
+      "datasets": [
+        "oi_where",
+        "oi_relation",
+        "oi_framing"
+      ]
+    },
+    "laya_typed": {
+      "share": 0.08,
+      "datasets": [
+        "laya_typed",
+        "laya_typed_img",
+        "laya_typed_var",
+        "laya_typed_img_var"
+      ]
+    },
+    "support": {
+      "share": 0.11,
+      "datasets": [
+        "banking77",
+        "clinc_intent",
+        "clinc_scope",
+        "support_intent",
+        "massive_intent",
+        "support_verticals",
+        "minds14_intent",
+        "sgd_intent",
+        "multiwoz_intent"
+      ]
+    },
+    "multilingual": {
+      "share": 0.06,
+      "datasets": [
+        "belebele",
+        "xcopa",
+        "xwinograd",
+        "tweet_sentiment_ml"
+      ]
+    },
+    "robotics": {
+      "share": 0.04,
+      "datasets": [
+        "robot_task",
+        "robot_progress"
+      ]
+    }
+  }
+}

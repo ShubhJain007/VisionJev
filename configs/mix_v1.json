@@ -1,0 +1,114 @@
+{
+  "version": "mix_v1",
+  "note": "Domain target shares (sum 1.0); within a domain, datasets are sampled in proportion to size**alpha. Eval-only sets (mmlu, *_hof, openimages_*, mind2web_*) never appear here.",
+  "alpha": 0.5,
+  "max_passes": 2,
+  "domains": {
+    "photo": {
+      "share": 0.17,
+      "datasets": [
+        "aokvqa",
+        "vqav2_yesno",
+        "textvqa",
+        "vizwiz_answerable",
+        "pets",
+        "eurosat",
+        "vqa_rad",
+        "oi_presence",
+        "oi_count"
+      ]
+    },
+    "document": {
+      "share": 0.13,
+      "datasets": [
+        "doclaynet_type",
+        "doclaynet_layout",
+        "doclaynet_read_small",
+        "doclaynet_read_large",
+        "cord_total",
+        "synth_invoice_doc",
+        "synth_refund_doc",
+        "synth_access_doc",
+        "synth_alert_doc",
+        "laya_typed_img"
+      ]
+    },
+    "ui": {
+      "share": 0.1,
+      "datasets": [
+        "synth_ui"
+      ]
+    },
+    "quality": {
+      "share": 0.05,
+      "datasets": [
+        "synth_quality"
+      ]
+    },
+    "text_decision": {
+      "share": 0.25,
+      "datasets": [
+        "laya_typed",
+        "synth_invoice",
+        "synth_refund",
+        "synth_access",
+        "synth_alert",
+        "banking77",
+        "clinc_intent",
+        "clinc_scope",
+        "support_intent",
+        "civil_toxicity",
+        "sms_spam",
+        "prompt_injection",
+        "jailbreak"
+      ]
+    },
+    "text_knowledge": {
+      "share": 0.12,
+      "datasets": [
+        "commonsense_qa",
+        "openbookqa",
+        "arc",
+        "boolq",
+        "snli"
+      ]
+    },
+    "code": {
+      "share": 0.13,
+      "datasets": [
+        "code_contests",
+        "code_choice",
+        "code_defect",
+        "synth_shell_risk",
+        "juliet_cwe",
+        "juliet_pair",
+        "primevul_cwe",
+        "primevul_pair",
+        "primevul_severity"
+      ]
+    },
+    "variety": {
+      "share": 0.05,
+      "datasets": [
+        "synth_invoice_var",
+        "synth_refund_var",
+        "synth_access_var",
+        "synth_alert_var",
+        "synth_invoice_doc_var",
+        "synth_refund_doc_var",
+        "synth_shell_risk_var",
+        "synth_ui_var",
+        "synth_quality_var",
+        "laya_typed_var",
+        "laya_typed_img_var",
+        "banking77_var",
+        "clinc_intent_var",
+        "support_intent_var",
+        "commonsense_qa_var",
+        "arc_var",
+        "oi_count_var",
+        "code_choice_var"
+      ]
+    }
+  }
+}

@@ -1,0 +1,204 @@
+<title>VisionJev Agent Demos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a control-room ledger. Header and task tabs, then a scoreboard (two lanes racing + four counters), then the
+   agent's run as a column of decision rows: evidence left, the question and probability bars right. */
+:root{
+  --bg:#eef1f6; --panel:#ffffff; --ink:#131a2b; --muted:#5a6479; --line:#d5dbe6; --track:#e3e8f1;
+  --local:#0b7a75; --local-soft:#d7efec; --esc:#b25a00; --esc-soft:#fbe6cc; --bad:#b3263a; --bad-soft:#f9dde1; --accent:#2a3fd0;
+  --display:"Bricolage Grotesque","Trebuchet MS",sans-serif; --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0e1320; --panel:#171e2f; --ink:#e8ecf6; --muted:#9aa5bd; --line:#2a3349; --track:#232c42;
+  --local:#4fd1c5; --local-soft:#123b3a; --esc:#f0a54a; --esc-soft:#42300f; --bad:#f2788a; --bad-soft:#47202a; --accent:#8fa0ff; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0e1320; --panel:#171e2f; --ink:#e8ecf6; --muted:#9aa5bd; --line:#2a3349; --track:#232c42;
+  --local:#4fd1c5; --local-soft:#123b3a; --esc:#f0a54a; --esc-soft:#42300f; --bad:#f2788a; --bad-soft:#47202a; --accent:#8fa0ff; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);padding-inline:clamp(16px,4vw,40px);padding-block:28px 56px}
+.wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+h1{font:700 clamp(28px,5vw,44px)/1.05 var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+.lede{color:var(--muted);max-width:66ch;margin:8px 0 0}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tab{font:500 14px var(--body);padding:8px 14px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button:focus-visible,input:focus-visible,.shot:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.board{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:16px}
+.blurb{margin:0;font-weight:500}
+.lanes{display:flex;flex-direction:column;gap:10px}
+.lane{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr) auto;gap:10px;align-items:center}
+.lane-name{font-size:13px;color:var(--muted)}
+.bar{height:14px;background:var(--track);border-radius:7px;overflow:hidden}
+.fill{height:100%;width:0;border-radius:7px}
+.fill.big{background:var(--esc)} .fill.ours{background:var(--local)}
+.lane-val{font:500 13px var(--mono);font-variant-numeric:tabular-nums;min-width:74px;text-align:right}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat{border-top:2px solid var(--line);padding-top:8px;min-width:0}
+.stat b{display:block;font:700 26px/1.1 var(--display);font-variant-numeric:tabular-nums}
+.stat span{font-size:12.5px;color:var(--muted)}
+.tag{font:500 10.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border-radius:4px;margin-left:6px;vertical-align:middle}
+.tag.m{background:var(--local-soft);color:var(--local)} .tag.e{background:var(--esc-soft);color:var(--esc)}
+.controls{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:end}
+.controls label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted)}
+.controls input[type=number]{width:92px;font:500 14px var(--mono);padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.slider{flex:1 1 240px;min-width:0}
+.slider input{width:100%;accent-color:var(--accent)}
+.play{font:600 14px var(--body);padding:9px 16px;border-radius:10px;border:0;background:var(--accent);color:var(--bg);cursor:pointer}
+.note{font-size:12.5px;color:var(--muted);margin:0;max-width:80ch}
+.run{display:flex;flex-direction:column;gap:10px}
+.step{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:16px;background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--local);border-radius:10px;padding:14px;transition:opacity .25s,transform .25s}
+.step.esc{border-left-color:var(--esc)}
+.step.pending{opacity:.28}
+.step.now{transform:translateX(4px)}
+.evid{min-width:0}
+.shot{display:block;width:100%;max-height:230px;object-fit:contain;object-position:left top;background:var(--track);border-radius:6px;cursor:zoom-in;border:0;padding:0}
+.ctx{font:12.5px/1.45 var(--mono);background:var(--track);border-radius:6px;padding:8px 10px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:230px;overflow:auto;margin:0}
+.main{min-width:0;display:flex;flex-direction:column;gap:8px}
+.head{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline}
+.kind{font:500 11px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.q{font-weight:600;margin:0;overflow-wrap:anywhere}
+.opts{display:flex;flex-direction:column;gap:5px}
+.opt{display:grid;grid-template-columns:minmax(0,1fr) 54px;gap:8px;align-items:center;font-size:13.5px}
+.opt-l{position:relative;min-width:0;padding:3px 8px;border-radius:5px;overflow:hidden;background:var(--track)}
+.opt-l i{position:absolute;inset:0 auto 0 0;background:var(--local-soft);border-radius:5px}
+.step.esc .opt-l i{background:var(--esc-soft)}
+.opt-l span{position:relative;overflow-wrap:anywhere}
+.opt.pick .opt-l span{font-weight:600}
+.opt em{font:500 12.5px var(--mono);font-style:normal;text-align:right;font-variant-numeric:tabular-nums}
+.gold{font:500 10.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-left:6px}
+.verdict{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px}
+.chip{font:500 12px var(--mono);padding:3px 9px;border-radius:999px}
+.chip.l{background:var(--local-soft);color:var(--local)} .chip.x{background:var(--esc-soft);color:var(--esc)}
+.chip.ok{border:1px solid var(--line);color:var(--muted)} .chip.no{background:var(--bad-soft);color:var(--bad)}
+.more{font-size:12.5px;color:var(--muted)}
+footer{font-size:12.5px;color:var(--muted);max-width:90ch;display:flex;flex-direction:column;gap:6px}
+.zoom{position:fixed;inset:0;background:color-mix(in srgb,var(--ink) 82%,transparent);display:grid;place-items:center;padding:20px;cursor:zoom-out;z-index:5}
+.zoom img{max-width:100%;max-height:100%;border-radius:8px}
+@media (max-width:640px){ .step{grid-template-columns:minmax(0,1fr)} .lane{grid-template-columns:minmax(0,1fr) auto} .lane .bar{grid-column:1/-1;order:3} }
+@media (prefers-reduced-motion: reduce){ .step,.fill{transition:none} }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>A 100-millisecond decision model inside an agent loop</h1>
+    <p class="lede">Each run below is a queue of small decisions an agent has to make. VisionJev answers the ones it is confident about on a local GPU and hands the rest to a large model. Move the threshold to see what is handed off.</p>
+  </header>
+  <div class="tabs" role="tablist" id="tabs"></div>
+
+  <section class="board" aria-live="polite">
+    <p class="blurb" id="blurb"></p>
+    <div class="lanes">
+      <div class="lane"><div class="lane-name">Large model for every decision <span class="tag e">estimate</span></div><div class="bar"><div class="fill big" id="laneBig"></div></div><div class="lane-val" id="laneBigV"></div></div>
+      <div class="lane"><div class="lane-name">VisionJev first, hand off the unsure</div><div class="bar"><div class="fill ours" id="laneOurs"></div></div><div class="lane-val" id="laneOursV"></div></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="sLocal"></b><span>decided locally <span class="tag m">measured</span></span></div>
+      <div class="stat"><b id="sAcc"></b><span>of those correct <span class="tag m">measured</span></span></div>
+      <div class="stat"><b id="sTok"></b><span>large-model tokens avoided <span class="tag e">estimate</span></span></div>
+      <div class="stat"><b id="sCost"></b><span>cost, against <span id="sCostBase"></span> <span class="tag e">estimate</span></span></div>
+    </div>
+    <div class="controls">
+      <label class="slider">Hand off when confidence is below <b id="tauV"></b><input type="range" id="tau" min="0.5" max="0.99" step="0.01" value="0.8"></label>
+      <button class="play" id="play" type="button">Replay the run</button>
+    </div>
+    <div class="controls">
+      <label>Large model, $ per million input tokens<input type="number" id="pin" min="0" step="0.5" value="5"></label>
+      <label>$ per million output tokens<input type="number" id="pout" min="0" step="0.5" value="25"></label>
+      <label>Seconds per large-model call<input type="number" id="sec" min="0" step="0.1" value="3"></label>
+      <label>Local GPU, $ per hour<input type="number" id="gpu" min="0" step="0.05" value="0.5"></label>
+    </div>
+    <p class="note">The four inputs above are example values, not quotes: set them to your model's list price and measured latency. Token counts for the large model are estimated from image size and text length, with 60 output tokens per call. No large-model call was made for this page, so its accuracy is not shown.</p>
+  </section>
+
+  <section class="run" id="run"></section>
+
+  <footer>
+    <p id="prov"></p>
+    <p>Sources shown: AndroidControl screenshots and tasks (Google Research, CC BY 4.0; screens of third-party apps), CORD receipts (CC BY 4.0), Banking77 (PolyAI, CC BY 4.0), Bitext customer-support sets (CDLA-Sharing-1.0), a prompt-injection set (Apache-2.0). Invoices, refund claims and shell commands are generated in-house.</p>
+  </footer>
+</div>
+<div class="zoom" id="zoom" hidden><img alt="Enlarged evidence image" id="zoomImg"></div>
+
+<script>
+const DATA = /*DATA*/null;
+const $ = id => document.getElementById(id);
+const OUT_TOK = 60;
+let cur = 0, timer = null, shown = Infinity;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt$ = v => '$' + (v < 0.1 ? v.toFixed(4) : v.toFixed(2));
+const num = id => Math.max(0, parseFloat($(id).value) || 0);
+
+function ctxText(c){
+  if (c == null) return '';
+  if (typeof c === 'string') return c;
+  return Object.entries(c).map(([k, v]) => k.replace(/_/g, ' ') + ': ' + (Array.isArray(v) ? (v.length ? v.join(' → ') : 'none') : v)).join('\n');
+}
+function optRows(r){
+  let idx = r.p.map((_, i) => i).sort((a, b) => r.p[b] - r.p[a]);
+  let keep = idx.slice(0, 4);
+  if (!keep.includes(r.gold)) keep.push(r.gold);
+  keep.sort((a, b) => a - b);
+  const rest = r.opts.length - keep.length;
+  return keep.map(i => `<div class="opt${i === r.pred ? ' pick' : ''}"><div class="opt-l"><i style="width:${(r.p[i] * 100).toFixed(1)}%"></i><span>${esc(r.opts[i])}${i === r.gold ? '<span class="gold">correct answer</span>' : ''}</span></div><em>${(r.p[i] * 100).toFixed(0)}%</em></div>`).join('')
+    + (rest > 0 ? `<div class="more">${rest} more option${rest > 1 ? 's' : ''} below 1%</div>` : '');
+}
+function render(){
+  const t = DATA.tasks[cur], tau = parseFloat($('tau').value);
+  $('tauV').textContent = tau.toFixed(2);
+  $('blurb').textContent = t.blurb;
+  document.querySelectorAll('.tab').forEach((b, i) => b.setAttribute('aria-selected', i === cur));
+  $('run').innerHTML = t.rows.map((r, i) => {
+    const local = r.conf >= tau, state = i >= shown ? ' pending' : (i === shown - 1 && timer ? ' now' : '');
+    const ev = r.img ? `<button class="shot" type="button" data-zoom="${i}" aria-label="Enlarge image"><img src="${r.img}" alt="${esc(r.kind)} evidence" style="width:100%;max-height:230px;object-fit:contain;object-position:left top;border-radius:6px"></button>` : '';
+    const cx = ctxText(r.ctx);
+    return `<article class="step${local ? '' : ' esc'}${state}"><div class="evid">${ev}${cx ? `<pre class="ctx"${r.img ? ' style="margin-top:8px"' : ''}>${esc(cx)}</pre>` : ''}</div>
+      <div class="main"><div class="head"><span class="kind">${String(i + 1).padStart(2, '0')} · ${esc(r.kind)}</span></div><p class="q">${esc(r.q)}</p><div class="opts">${optRows(r)}</div>
+      <div class="verdict">${local ? `<span class="chip l">answered locally in ${Math.round(r.ms)} ms</span>` : `<span class="chip x">handed to the large model · about ${r.ctok.toLocaleString()} tokens</span>`}
+      <span class="chip ${r.ok ? 'ok' : 'no'}">VisionJev ${r.ok ? 'was right' : 'was wrong'} · confidence ${(r.conf * 100).toFixed(0)}%</span></div></div></article>`;
+  }).join('');
+  score();
+}
+function score(){
+  const t = DATA.tasks[cur], tau = parseFloat($('tau').value), rows = t.rows.slice(0, Math.min(shown, t.rows.length));
+  const pin = num('pin') / 1e6, pout = num('pout') / 1e6, sec = num('sec'), gpu = num('gpu') / 3600;
+  let nL = 0, okL = 0, tokSaved = 0, bigT = 0, ourT = 0, bigC = 0, ourC = 0;
+  for (const r of rows){
+    const call$ = r.ctok * pin + OUT_TOK * pout, loc = r.ms / 1000;
+    bigT += sec; bigC += call$; ourT += loc; ourC += loc * gpu;
+    if (r.conf >= tau){ nL++; okL += r.ok ? 1 : 0; tokSaved += r.ctok + OUT_TOK; } else { ourT += sec; ourC += call$; }
+  }
+  const all = t.rows.reduce((s, r) => s + sec, 0) || 1;
+  $('laneBig').style.width = Math.min(100, bigT / all * 100) + '%';
+  $('laneOurs').style.width = Math.min(100, ourT / all * 100) + '%';
+  $('laneBigV').textContent = bigT.toFixed(1) + ' s';
+  $('laneOursV').textContent = ourT.toFixed(1) + ' s';
+  $('sLocal').textContent = nL + ' of ' + rows.length;
+  $('sAcc').textContent = nL ? okL + ' of ' + nL : 'none';
+  $('sTok').textContent = Math.round(tokSaved).toLocaleString();
+  $('sCost').textContent = fmt$(ourC);
+  $('sCostBase').textContent = fmt$(bigC);
+}
+function replay(){
+  clearInterval(timer);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches){ shown = Infinity; timer = null; render(); return; }
+  shown = 0; $('play').textContent = 'Running…';
+  timer = setInterval(() => {
+    shown++;
+    if (shown > DATA.tasks[cur].rows.length){ clearInterval(timer); timer = null; shown = Infinity; $('play').textContent = 'Replay the run'; }
+    render();
+  }, 650);
+  render();
+}
+function pick(i){ clearInterval(timer); timer = null; shown = Infinity; $('play').textContent = 'Replay the run'; cur = i; try { history.replaceState(null, '', '#' + DATA.tasks[i].key); } catch (e) {} render(); }
+
+$('tabs').innerHTML = DATA.tasks.map((t, i) => `<button class="tab" role="tab" type="button" data-i="${i}">${esc(t.title)}</button>`).join('');
+$('tabs').addEventListener('click', e => { const b = e.target.closest('.tab'); if (b) pick(+b.dataset.i); });
+['tau', 'pin', 'pout', 'sec', 'gpu'].forEach(id => $(id).addEventListener('input', () => id === 'tau' ? render() : score()));
+$('play').addEventListener('click', replay);
+$('run').addEventListener('click', e => { const b = e.target.closest('[data-zoom]'); if (b){ $('zoomImg').src = DATA.tasks[cur].rows[+b.dataset.zoom].img; $('zoom').hidden = false; } });
+$('zoom').addEventListener('click', () => { $('zoom').hidden = true; });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') $('zoom').hidden = true; });
+$('prov').textContent = `Every VisionJev decision here is real: checkpoint ${DATA.checkpoint}, measured on one ${DATA.gpu}. Each run is a random draw (seed ${DATA.seed}) of 12 held-out items the model did not train on; wrong answers are left in. Twelve items is a sample, not a benchmark.`;
+const h = DATA.tasks.findIndex(t => '#' + t.key === location.hash);
+pick(h >= 0 ? h : 0);
+</script>

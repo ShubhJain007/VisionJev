@@ -1,0 +1,10 @@
+time	run	status	minutes
+2026-09-25 01:31:16	doc-split0	ok	13
+2026-09-25 02:14:37	doc-split1024	ok	43
+2026-09-25 03:05:34	doc-split1536	oom-retry-b4	50
+2026-09-25 04:32:23	doc-split1536-b4	ok	86
+2026-09-25 04:45:10	vqa-act	ok	12
+2026-09-25 04:57:54	vqa-lr1e5	ok	12
+2026-09-25 06:40:24	mix-split1024	ok	102
+2026-09-25 06:48:50	doc-split2048	oom-retry-b4	8
+2026-09-25 09:10:25	doc-split2048-b4	ok	141

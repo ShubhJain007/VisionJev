@@ -1,0 +1,34 @@
+{
+  "/home/kneepolean/shubhj/VisionJev/checkpoints/baseline-v2-smolvlm2-500m": {
+    "split_edge": 0,
+    "median_ms": 28.77978450851515,
+    "p90_ms": 29.28540500579402,
+    "questions_per_call": 1.03,
+    "input_tokens_per_call": 108.21,
+    "n": 100
+  },
+  "/home/kneepolean/shubhj/VisionJev/checkpoints/mix-split1024": {
+    "split_edge": 1024,
+    "median_ms": 92.87711199431214,
+    "p90_ms": 93.82405001088046,
+    "questions_per_call": 1.03,
+    "input_tokens_per_call": 380.86,
+    "n": 100
+  },
+  "/home/kneepolean/shubhj/VisionJev/checkpoints/vqa-act": {
+    "split_edge": 0,
+    "median_ms": 28.95084449846763,
+    "p90_ms": 29.525452002417296,
+    "questions_per_call": 1.03,
+    "input_tokens_per_call": 108.21,
+    "n": 100
+  },
+  "/home/kneepolean/shubhj/VisionJev/checkpoints/vqa-lr1e5": {
+    "split_edge": 0,
+    "median_ms": 28.974797489354387,
+    "p90_ms": 29.519207979319617,
+    "questions_per_call": 1.03,
+    "input_tokens_per_call": 108.21,
+    "n": 100
+  }
+}

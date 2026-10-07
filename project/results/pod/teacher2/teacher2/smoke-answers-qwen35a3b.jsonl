@@ -1,0 +1,20 @@
+{"qid": "u00000-q0", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [1.0, 0.0]}
+{"qid": "u00000-q1", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.0, 1.0, 0.0, 0.0]}
+{"qid": "u00000-q2", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.0, 0.0, 0.0, 1.0]}
+{"qid": "u00000-q3", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.0, 1.0]}
+{"qid": "u00000-q4", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.0, 1.0, 0.0, 0.0]}
+{"qid": "u00001-q0", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [1.0, 0.0, 0.0, 0.0, 0.0]}
+{"qid": "u00001-q1", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.0, 1.0, 0.0, 0.0, 0.0]}
+{"qid": "u00001-q2", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.0, 0.0, 1.0, 0.0]}
+{"qid": "u00001-q3", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.0, 1.0, 0.0, 0.0]}
+{"qid": "u00001-q4", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.0, 0.0, 0.3, 0.7]}
+{"qid": "u00002-q0", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.99, 0.01]}
+{"qid": "u00002-q1", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.01, 0.97, 0.01, 0.01]}
+{"qid": "u00002-q2", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [1.0, 0.0]}
+{"qid": "u00002-q3", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.0, 1.0, 0.0, 0.0]}
+{"qid": "u00002-q4", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.95, 0.03, 0.01, 0.01]}
+{"qid": "u00003-q0", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.0, 1.0, 0.0, 0.0]}
+{"qid": "u00003-q1", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.0, 1.0, 0.0, 0.0]}
+{"qid": "u00003-q2", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.0, 0.99, 0.0, 0.01]}
+{"qid": "u00003-q3", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.0, 1.0, 0.0, 0.0]}
+{"qid": "u00003-q4", "answerer": "qwen35a3b", "model": "Qwen/Qwen3.6-35B-A3B-FP8", "probs": [0.0, 1.0, 0.0, 0.0]}

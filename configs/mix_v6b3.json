@@ -1,0 +1,228 @@
+{
+ "version": "mix_v6b3",
+ "alpha": 0.5,
+ "max_passes": 3,
+ "note": "Phase B3 (Hypothesis/V6.3.md section 7), continued from qwen4b-v6b2: compound exact generators (gen3), planted-error judge sets, human-labelled arithmetic / judging sets, agent sets v2, human-labelled UI (AndroidControl, Rico) and procedural CAD, with 34% replay of the earlier domains (laya_typed + replay_*). Domains whose data is absent are dropped and the rest renormalised (mix_from_config).",
+ "domains": {
+  "gen3": {
+   "share": 0.16,
+   "datasets": [
+    "gen_deadline_chain",
+    "gen_period_count",
+    "gen_fx_aggregate",
+    "gen_lookup_chain",
+    "gen_cond_probability",
+    "gen_constraint_rank",
+    "gen_amended_policy"
+   ],
+   "dataset_weight": {
+    "gen_amended_policy": 1.5,
+    "gen_deadline_chain": 1.3,
+    "gen_fx_aggregate": 1.3
+   }
+  },
+  "judge_planted": {
+   "share": 0.07,
+   "datasets": [
+    "judge_step_check",
+    "judge_step_pair",
+    "judge_rubric_cap",
+    "judge_adequacy"
+   ]
+  },
+  "gen_r1r2": {
+   "share": 0.08,
+   "datasets": [
+    "gen_temporal",
+    "gen_money",
+    "gen_probability",
+    "gen_units",
+    "gen_rules",
+    "gen_tables",
+    "gen_temporal2",
+    "gen_longpolicy"
+   ]
+  },
+  "human_arith": {
+   "share": 0.06,
+   "datasets": [
+    "finqa_choice",
+    "convfinqa_choice",
+    "tatqa_choice",
+    "tabfact_noul",
+    "timeqa_choice"
+   ]
+  },
+  "human_judge": {
+   "share": 0.05,
+   "datasets": [
+    "summeval_pair",
+    "summeval_score",
+    "frank_factual",
+    "mqm_pair",
+    "mqm_major_error",
+    "faithdial_noul",
+    "begin_attribution",
+    "feedbackqa_score",
+    "helpsteer_score",
+    "helpsteer_pair"
+   ]
+  },
+  "logic_long": {
+   "share": 0.05,
+   "datasets": [
+    "bb_reasoning",
+    "proofwriter_owa",
+    "wanli_nli",
+    "quality_long",
+    "gsm8k_choice",
+    "svamp_choice",
+    "math_choice",
+    "strategyqa",
+    "ropes_choice"
+   ]
+  },
+  "teacher": {
+   "share": 0.04,
+   "datasets": [
+    "teacher_hard"
+   ]
+  },
+  "agent_code": {
+   "share": 0.06,
+   "datasets": [
+    "agent_verify_pair",
+    "agent_outcome",
+    "agent_next_action",
+    "agent_step_progress"
+   ],
+   "dataset_weight": {
+    "agent_verify_pair": 2.0,
+    "agent_next_action": 0.6
+   }
+  },
+  "ui": {
+   "share": 0.06,
+   "datasets": [
+    "ac_next_action",
+    "ac_element",
+    "ac_goal_reached",
+    "ui_refexp",
+    "ui_widget_caption",
+    "ui_widget_find",
+    "ui_element_type",
+    "ui_element_count",
+    "omniact_next_action"
+   ]
+  },
+  "cad": {
+   "share": 0.03,
+   "datasets": [
+    "cad_feature_count",
+    "cad_view_match",
+    "cad_dimension_read",
+    "cad_drawing_pair",
+    "cad_section_depth",
+    "cad_assembly",
+    "circuit_component_count"
+   ]
+  },
+  "laya_typed": {
+   "share": 0.08,
+   "datasets": [
+    "laya_typed",
+    "laya_typed_img",
+    "laya_typed_var",
+    "laya_typed_img_var"
+   ]
+  },
+  "replay_photo": {
+   "share": 0.06,
+   "datasets": [
+    "aokvqa",
+    "vqav2_yesno",
+    "textvqa",
+    "vizwiz_answerable",
+    "pets",
+    "eurosat",
+    "vqa_rad",
+    "oi_presence",
+    "oi_count"
+   ]
+  },
+  "replay_document": {
+   "share": 0.06,
+   "datasets": [
+    "doclaynet_type",
+    "doclaynet_layout",
+    "doclaynet_read_small",
+    "doclaynet_read_large",
+    "cord_total",
+    "synth_invoice_doc",
+    "synth_refund_doc",
+    "synth_access_doc",
+    "synth_alert_doc",
+    "pii_detect",
+    "chart_qa",
+    "chart_score"
+   ]
+  },
+  "replay_ui": {
+   "share": 0.02,
+   "datasets": [
+    "synth_ui",
+    "rico_screenqa"
+   ]
+  },
+  "replay_code": {
+   "share": 0.05,
+   "datasets": [
+    "code_contests",
+    "code_choice",
+    "code_defect",
+    "synth_shell_risk",
+    "juliet_cwe",
+    "juliet_pair",
+    "primevul_cwe",
+    "primevul_pair",
+    "code_exec_pass",
+    "code_exec_pair",
+    "code_exec_output",
+    "commit_message",
+    "conala_snippet",
+    "taco_exec_pass",
+    "taco_exec_pair",
+    "wikisql_check",
+    "wikisql_pair",
+    "swe_file_loc",
+    "swe_patch_match",
+    "swe_test_fail",
+    "primevul_severity"
+   ]
+  },
+  "replay_support": {
+   "share": 0.04,
+   "datasets": [
+    "banking77",
+    "clinc_intent",
+    "clinc_scope",
+    "support_intent",
+    "massive_intent",
+    "support_verticals",
+    "minds14_intent",
+    "sgd_intent",
+    "multiwoz_intent"
+   ]
+  },
+  "replay_spatial_robot": {
+   "share": 0.03,
+   "datasets": [
+    "oi_where",
+    "oi_relation",
+    "oi_framing",
+    "robot_task",
+    "robot_progress"
+   ]
+  }
+ }
+}

@@ -1,0 +1,102 @@
+domain	dataset	train_rows	annotation_license	image_license
+photo	aokvqa	4510	Apache-2.0	COCO (per-image Flickr licenses)
+photo	vqav2_yesno	18331	CC BY 4.0	COCO (per-image Flickr licenses)
+photo	textvqa	8000	CC BY 4.0	OpenImages (listed CC BY 2.0)
+photo	vizwiz_answerable	8000	CC BY 4.0 (vizwiz.org)	VizWiz (CC BY 4.0)
+photo	pets	3680	CC BY-SA 4.0 (share-alike)	CC BY-SA 4.0
+photo	eurosat	8000	MIT (GitHub phelber/EuroSAT)	Sentinel-2 (Copernicus open data)
+photo	vqa_rad	958	CC0-1.0	CC0
+photo	oi_presence	5702	CC BY 4.0 (Google LLC)	listed as CC BY 2.0 per image (no warranty; verify
+photo	oi_count	5702	CC BY 4.0 (Google LLC)	listed as CC BY 2.0 per image (no warranty; verify
+document	doclaynet_type	6000	CDLA-Permissive-1.0	DocLayNet page renders (CDLA-Permissive-1.0)
+document	doclaynet_layout	6000	CDLA-Permissive-1.0	DocLayNet page renders (CDLA-Permissive-1.0)
+document	doclaynet_read_small	671	CDLA-Permissive-1.0	DocLayNet page renders (CDLA-Permissive-1.0)
+document	doclaynet_read_large	4649	CDLA-Permissive-1.0	DocLayNet page renders (CDLA-Permissive-1.0)
+document	cord_total	525	CC BY 4.0	CC BY 4.0
+document	synth_invoice_doc	7500	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+document	synth_refund_doc	7500	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+document	synth_access_doc	7500	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+document	synth_alert_doc	7500	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+document	pii_detect	20000	Apache-2.0	none (text-only)
+document	chart_qa	10738	generated in-house, exact labels	generated
+document	chart_score	13000	generated in-house, exact labels	generated
+ui	synth_ui	15000	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+ui	rico_screenqa	13310	CC BY 4.0 (ScreenQA)	Rico screenshots (CC BY 4.0)
+quality	synth_quality	6000	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+quality	photo_condition	5702	generated in-house, exact labels	CC BY 2.0 photos, modified
+text_decision	synth_invoice	7500	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+text_decision	synth_refund	7500	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+text_decision	synth_access	7500	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+text_decision	synth_alert	7500	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+text_decision	sms_spam	1316	CC BY 4.0 (UCI)	none (text-only)
+text_decision	go_emotions	15000	Apache-2.0	none (text-only)
+text_decision	review_polarity	15000	Apache-2.0	none (text-only)
+support	banking77	10003	CC BY 4.0 (GitHub PolyAI-LDN/task-specific-datasets)	none (text-only)
+support	clinc_intent	15000	CC BY 3.0	none (text-only)
+support	clinc_scope	500	CC BY 3.0	none (text-only)
+support	support_intent	24184	CDLA-Sharing-1.0 (share-alike)	none (text-only)
+support	massive_intent	60000	CC BY 4.0 (MASSIVE 1.1)	none (text-only)
+support	support_verticals	40000	CDLA-Sharing-1.0 (share-alike; 5 Bitext vertical datasets)	none (text-only)
+support	minds14_intent	7336	CC BY 4.0	none (text-only)
+support	sgd_intent	40000	CC BY-SA 4.0 (share-alike; GitHub LICENSE.txt)	none (text-only)
+support	multiwoz_intent	21184	MIT (GitHub budzianowski/multiwoz LICENSE)	none (text-only)
+safety	prompt_injection	546	Apache-2.0	none (text-only)
+safety	jailbreak	1044	Apache-2.0	none (text-only)
+safety	civil_toxicity	30000	CC0-1.0	none (text-only)
+safety	aegis_safety	20000	CC BY 4.0	none (text-only)
+safety	hate_score	20000	CC BY 4.0	none (text-only)
+safety	salad_category	15000	Apache-2.0	none (text-only)
+agent	tool_select	7748	Apache-2.0 (Hermes function calling; ToolACE)	none (text-only)
+agent	tool_relevant	7650	Apache-2.0 (Hermes function calling; ToolACE)	none (text-only)
+reading	boolq	9427	CC BY-SA 3.0 (share-alike)	none (text-only)
+reading	snli	30000	CC BY-SA 4.0 (share-alike)	none (text-only)
+reading	vitaminc	25000	CC BY-SA 3.0 (share-alike)	none (text-only)
+reading	squad_answerable	20000	CC BY-SA 4.0 (share-alike)	none (text-only)
+text_knowledge	commonsense_qa	9619	MIT	none (text-only)
+text_knowledge	openbookqa	4954	Apache-2.0 (GitHub allenai/OpenBookQA)	none (text-only)
+text_knowledge	arc	3370	CC BY-SA 4.0 (share-alike)	none (text-only)
+text_knowledge	aqua_math	20000	Apache-2.0	none (text-only)
+multilingual	belebele	18669	CC BY-SA 4.0 (share-alike)	none (text-only)
+multilingual	xcopa	5566	CC BY 4.0	none (text-only)
+multilingual	xwinograd	3730	CC BY 4.0	none (text-only)
+multilingual	tweet_sentiment_ml	14712	CC BY 3.0	none (text-only)
+code	code_contests	16278	CC BY 4.0	none (text-only)
+code	code_choice	5571	CC BY 4.0	none (text-only)
+code	code_defect	21854	C-UDA (Computational Use of Data Agreement)	none (text-only)
+code	synth_shell_risk	12000	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+code	juliet_cwe	1106	Public domain (NIST SARD Juliet 1.3; CC0 1.0 for foreign rights)	none (code)
+code	juliet_pair	696	Public domain (NIST SARD Juliet 1.3; CC0 1.0 for foreign rights)	none (code)
+code	primevul_cwe	1375	MIT (PrimeVul: GitHub DLVulDet/PrimeVul, HF colin/PrimeVul); CVSS from	none (code; snippets from open-source projects und
+code	primevul_pair	594	MIT (PrimeVul: GitHub DLVulDet/PrimeVul, HF colin/PrimeVul); CVSS from	none (code; snippets from open-source projects und
+code	code_exec_pass	2766	CC BY 4.0 (MBPP); labels by execution	none (text-only)
+code	code_exec_pair	1718	CC BY 4.0 (MBPP); labels by execution	none (text-only)
+code	code_exec_output	2044	CC BY 4.0 (MBPP); outputs by execution	none (text-only)
+code	commit_message	40000	MIT (dataset); code from permissively licensed repos	none (text-only)
+code	conala_snippet	2363	MIT	none (text-only)
+code	taco_exec_pass	33388	Apache-2.0 (TACO); labels by execution	none (text-only)
+code	taco_exec_pair	20128	Apache-2.0 (TACO); labels by execution	none (text-only)
+spatial	oi_where	1201	CC BY 4.0 (Google LLC)	listed as CC BY 2.0 per image (no warranty; verify
+spatial	oi_relation	2066	CC BY 4.0 (Google LLC)	listed as CC BY 2.0 per image (no warranty; verify
+spatial	oi_framing	421	CC BY 4.0 (Google LLC)	listed as CC BY 2.0 per image (no warranty; verify
+robotics	robot_task	3467	episode instructions / timing from the source datasets: {"lerobot/libe	frames of the source datasets' videos, same licens
+robotics	robot_progress	3467	episode instructions / timing from the source datasets: {"lerobot/libe	frames of the source datasets' videos, same licens
+laya_typed	laya_typed	6000	Apache-2.0	none (text-only)
+laya_typed	laya_typed_img	6000	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+laya_typed	laya_typed_var	1800	Apache-2.0	none (text-only)
+laya_typed	laya_typed_img_var	1800	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+variety	synth_invoice_var	2250	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+variety	synth_refund_var	2250	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+variety	synth_access_var	2250	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+variety	synth_alert_var	2250	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+variety	synth_invoice_doc_var	2250	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+variety	synth_refund_doc_var	2250	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+variety	synth_shell_risk_var	3600	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+variety	synth_ui_var	4500	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+variety	synth_quality_var	1800	generated (VisionJev, exact rule-based labels)	rendered with DejaVu / Liberation / Lato free font
+variety	banking77_var	3000	CC BY 4.0 (GitHub PolyAI-LDN/task-specific-datasets)	none (text-only)
+variety	clinc_intent_var	4500	CC BY 3.0	none (text-only)
+variety	support_intent_var	7255	CDLA-Sharing-1.0 (share-alike)	none (text-only)
+variety	commonsense_qa_var	2885	MIT	none (text-only)
+variety	arc_var	1011	CC BY-SA 4.0 (share-alike)	none (text-only)
+variety	oi_count_var	1710	CC BY 4.0 (Google LLC)	listed as CC BY 2.0 per image (no warranty; verify
+variety	code_choice_var	1671	CC BY 4.0	none (text-only)

@@ -1,0 +1,42 @@
+{
+  "/home/kneepolean/shubhj/VisionJev/checkpoints/doc-split0": {
+    "split_edge": 0,
+    "median_ms": 44.035365484887734,
+    "p90_ms": 46.818670991342515,
+    "questions_per_call": 2.95,
+    "input_tokens_per_call": 352.49,
+    "n": 100
+  },
+  "/home/kneepolean/shubhj/VisionJev/checkpoints/doc-split1024": {
+    "split_edge": 1024,
+    "median_ms": 129.34782699448988,
+    "p90_ms": 134.27419599611312,
+    "questions_per_call": 2.95,
+    "input_tokens_per_call": 1137.19,
+    "n": 100
+  },
+  "/home/kneepolean/shubhj/VisionJev/checkpoints/doc-split1536-b4": {
+    "split_edge": 1536,
+    "median_ms": 256.54505849524867,
+    "p90_ms": 258.95542398211546,
+    "questions_per_call": 2.95,
+    "input_tokens_per_call": 2113.64,
+    "n": 100
+  },
+  "/home/kneepolean/shubhj/VisionJev/checkpoints/doc-split2048-b4": {
+    "split_edge": 2048,
+    "median_ms": 428.2781349902507,
+    "p90_ms": 429.78124201181345,
+    "questions_per_call": 2.95,
+    "input_tokens_per_call": 3479.49,
+    "n": 100
+  },
+  "/home/kneepolean/shubhj/VisionJev/checkpoints/mix-split1024": {
+    "split_edge": 1024,
+    "median_ms": 126.97007450333331,
+    "p90_ms": 131.11154900980182,
+    "questions_per_call": 2.95,
+    "input_tokens_per_call": 1137.19,
+    "n": 100
+  }
+}

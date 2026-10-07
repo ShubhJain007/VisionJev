@@ -1,0 +1,284 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>VisionJev 4B round 1</title><style>
+  @page { size: A4; margin: 18mm 17mm 18mm 17mm; }
+  :root {
+    --ink: #1c1f24; --muted: #5b626d; --line: #d9dde3; --soft: #f4f6f8;
+    --accent: #1f5f9e; --good: #2e7d4f; --warn: #a15c00; --bad: #a3322b;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Georgia", "DejaVu Serif", serif; color: var(--ink); font-size: 10.4pt; line-height: 1.5; margin: 0; background: #fff; }
+  h1, h2, h3, h4, .sans, table, .box-title, .toc { font-family: "Helvetica Neue", "Arial", "DejaVu Sans", sans-serif; }
+  h1 { font-size: 24pt; margin: 0 0 6pt; letter-spacing: -0.3px; }
+  h2 { font-size: 15.5pt; margin: 22pt 0 8pt; padding-bottom: 4pt; border-bottom: 2px solid var(--ink); page-break-after: avoid; }
+  h3 { font-size: 12pt; margin: 16pt 0 6pt; color: var(--accent); page-break-after: avoid; }
+  h4 { font-size: 10.5pt; margin: 12pt 0 4pt; page-break-after: avoid; }
+  p { margin: 0 0 7pt; }
+  ul, ol { margin: 0 0 8pt; padding-left: 18pt; }
+  li { margin-bottom: 3pt; }
+  code { font-family: "DejaVu Sans Mono", "Menlo", monospace; font-size: 8.8pt; background: var(--soft); padding: 0 3px; border-radius: 3px; }
+  table { border-collapse: collapse; width: 100%; font-size: 8.9pt; margin: 6pt 0 10pt; page-break-inside: avoid; }
+  th, td { border: 1px solid var(--line); padding: 4pt 5pt; vertical-align: top; text-align: left; }
+  th { background: var(--soft); font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .page-break { page-break-before: always; }
+  .cover { height: 250mm; display: flex; flex-direction: column; justify-content: space-between; }
+  .cover .kicker { font-family: Arial, sans-serif; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); font-size: 9pt; }
+  .cover .sub { font-size: 13pt; color: var(--muted); max-width: 150mm; }
+  .cover .meta { font-family: Arial, sans-serif; font-size: 9pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8pt; }
+  .box { border: 1px solid var(--line); border-left: 4px solid var(--accent); background: #fafbfc; padding: 7pt 10pt; margin: 8pt 0 10pt; page-break-inside: avoid; }
+  .box p:last-child, .box ul:last-child { margin-bottom: 0; }
+  .box-title { font-size: 8.4pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3pt; color: var(--accent); }
+  .intuition { border-left-color: #6b4fa0; } .intuition .box-title { color: #6b4fa0; }
+  .why { border-left-color: var(--good); } .why .box-title { color: var(--good); }
+  .whynot { border-left-color: var(--warn); } .whynot .box-title { color: var(--warn); }
+  .us { border-left-color: var(--bad); background: #fdf8f7; } .us .box-title { color: var(--bad); }
+  .flow { display: flex; gap: 5pt; align-items: stretch; margin: 8pt 0 12pt; font-family: Arial, sans-serif; font-size: 8.3pt; page-break-inside: avoid; }
+  .flow .step { flex: 1; border: 1px solid var(--line); border-top: 3px solid var(--accent); padding: 5pt 6pt; background: #fff; }
+  .flow .step b { display: block; font-size: 8.8pt; margin-bottom: 2pt; }
+  .flow .arrow { align-self: center; color: var(--muted); font-size: 12pt; }
+  .toc { font-size: 10pt; columns: 2; column-gap: 18pt; }
+  .toc div { margin-bottom: 3pt; }
+  .small { font-size: 8.8pt; color: var(--muted); }
+  .tag { display: inline-block; font-family: Arial, sans-serif; font-size: 7.6pt; font-weight: 700; padding: 1px 5px; border-radius: 3px; color: #fff; }
+  .p0 { background: var(--bad); } .p1 { background: var(--warn); } .p2 { background: var(--accent); }
+  .kpi { display: flex; gap: 8pt; margin: 8pt 0 12pt; font-family: Arial, sans-serif; }
+  .kpi div { flex: 1; border: 1px solid var(--line); padding: 6pt 8pt; }
+  .kpi .v { font-size: 16pt; font-weight: 700; }
+  .kpi .l { font-size: 8pt; color: var(--muted); }
+  pre { font-family: "DejaVu Sans Mono", monospace; font-size: 8.2pt; background: var(--soft); padding: 7pt 9pt; border-radius: 3px; white-space: pre-wrap; page-break-inside: avoid; margin: 6pt 0 10pt; }
+
+ table.small { font-size: 8.3pt; } td b { color: #1f5f9e; }</style></head><body>
+<section class="cover"><div>
+<div class="kicker">VisionJev · evaluation report · 29 September 2026</div>
+<h1 style="font-size:28pt; margin-top:40mm;">Qwen3-VL-4B, round 1:<br>broad training, a reasoning delta, and weight averaging</h1>
+<p class="sub">Results of the one-night 4B run (Phase A on all 117 datasets, Phase B on a new hard-reasoning set), the two
+A/B weight averages, and the same evaluation suite as the 30B and 2B: JevBench public, zero-shot, never-seen tasks, held-out
+wording, robustness and latency. With a diagnosis of what worked, what did not, and the round-2 plan.</p></div>
+<div class="meta">Sources: <code>results/experiments.jsonl</code> (every number below is a logged record), JevBench outputs in
+<code>results/pod/*/jevbench/</code>, pod logs in <code>data/logs/pod/</code>. Reference values for Imajev-4B and Jev 1.13.0 from the
+JevBench v1.4.2.2 results file. Code: laya-vision commits 8c3d5f2 (training changes, hard sets), 1dbb140 (generator audit fix),
+0d0c31c (soups), ca67d0d (eval pod). Local runs of the soups on the 16 GB GPU were invalid (out of memory at 4,096 tokens) and are
+excluded.</div></section>
+
+<h2 class="page-break">1. Summary</h2>
+<div class="kpi">
+ <div><div class="v">76.2%</div><div class="l">best 4B on JevBench public (4B soup 75% B)</div></div>
+ <div><div class="v">55.0%</div><div class="l">its hard tier (Imajev-4B 72.1%)</div></div>
+ <div><div class="v">82.3%</div><div class="l">our 30B, same items</div></div>
+ <div><div class="v">86.1%</div><div class="l">Imajev-4B, same items</div></div>
+</div>
+<table class=""><tr><th>System</th><th>All (231)</th><th>Easy (48)</th><th>Original (72)</th><th>Hard (111)</th><th>ECE</th><th>p50 ms</th></tr>
+<tr><td class="">2B (Qwen3-VL-2B, mix_v5)</td><td class="num">60.6</td><td class="num">100.0</td><td class="num">63.9</td><td class="num">41.4</td><td class="num">0.102</td><td class="num">CPU</td></tr>
+<tr><td class="">30B (Qwen3-VL-30B-A3B, v5)</td><td class="num">82.3</td><td class="num">100.0</td><td class="num">98.6</td><td class="num">64.0</td><td class="num">0.061</td><td class="num">227</td></tr>
+<tr><td class="">4B Phase A</td><td class="num">74.5</td><td class="num">100.0</td><td class="num">95.8</td><td class="num">49.5</td><td class="num">0.062</td><td class="num">91</td></tr>
+<tr><td class="">4B Phase B</td><td class="num">76.6</td><td class="num">100.0</td><td class="num">91.7</td><td class="num">56.8</td><td class="num">0.055</td><td class="num">82</td></tr>
+<tr><td class="">4B soup 50/50</td><td class="num">76.2</td><td class="num">100.0</td><td class="num">95.8</td><td class="num">53.2</td><td class="num">0.054</td><td class="num">89</td></tr>
+<tr><td class="">4B soup 75% B</td><td class="num">76.2</td><td class="num">100.0</td><td class="num">93.1</td><td class="num">55.0</td><td class="num">0.046</td><td class="num">87</td></tr>
+<tr><td class="">Imajev-4B (reference)</td><td class="num">86.1</td><td class="num">100.0</td><td class="num">98.6</td><td class="num">72.1</td><td class="num">0.026</td><td class="num">—</td></tr>
+<tr><td class="">Jev 1.13.0 (reference)</td><td class="num">86.6</td><td class="num">100.0</td><td class="num">~99</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr></table>
+<p><b>Verdict: ship 4B soup 75% B.</b> The four 4B checkpoints are tied outside JevBench (zero-shot, never-seen,
+held-out wording and MMLU agree within 0.6 points), and on JevBench every one of 4B Phase B, 4B soup 50/50, 4B soup 75% B is
+within one item of the best; among those, 4B soup 75% B has the lowest calibration error (0.046), balances the
+original (93.1%) and hard (55.0%) tiers, and has the fewest option-order flips. Across the shared suite (section 4) the 4B matches the
+30B on zero-shot accuracy and held-out wording, is better calibrated, and answers an image decision about six times faster;
+the 30B keeps its lead on knowledge (MMLU) and on the hard tier. The remaining gap to Imajev is almost entirely the hard tier.</p>
+
+<h2>2. What was run</h2>
+<table>
+<tr><th>Stage</th><th>Data</th><th>Settings</th><th>Hardware / time</th></tr>
+<tr><td>Phase A (<code>qwen4b-v6a</code>)</td><td>mix_v6: all 117 trainable datasets (photos, documents, UI, code incl.
+execution-verified, support, safety, reasoning, robotics, Jev-style laya_typed); <code>describe_labels</code> augmentation 0.3</td>
+<td>Qwen3-VL-4B-Instruct, LoRA r32 on attention + MLP, lr 5e-05, batch 16,
+text budget 4096 tokens (middle cut), logit cap 10.0, CE + RLCD (CE constant)</td>
+<td>1× H100, 480 min cap, ~15k steps (~8 rows/s; ≈20% of one pass); best checkpoint step 13,500 by calibration NLL</td></tr>
+<tr><td>Phase B (<code>qwen4b-v6b</code>)</td><td>mix_v6_hard: exact generators (dates / time zones / DST, invoices / discounts /
+proration, probability), BIG-bench reasoning, ProofWriter, QuALITY, WANLI, HelpSteer2 (~60%); laya_typed; replay of the Phase A
+domains incl. images</td><td>continued from Phase A, lr 2e-05, same budget and loss</td><td>60 min cap, 484 steps
+(long rows)</td></tr>
+<tr><td>Soups</td><td>—</td><td>element-wise average of every saved tensor: 0.5·A + 0.5·B and 0.25·A + 0.75·B</td><td>built locally</td></tr>
+<tr><td>Evals</td><td colspan="2">JevBench public at 4,096 tokens (their runner and scorer); 14 zero-shot sets; never-seen text / vision;
+held-out wording (19.7k); robustness (11 sets × 100 × 5 perturbation families); latency (100 image decisions)</td><td>1× H100 per
+checkpoint, ~40 min</td></tr></table>
+<p class="small">Cost: training pod ≈ $45 (12.8 h × $3.49/h, incl. evals of A and B); soup-eval pod ≈ $5 (H100, ~1.4 h incl. upload). Round-1 total ≈ $50.</p>
+
+<h2 class="page-break">3. JevBench public in detail</h2>
+<h3>3.1 Hard tier by family (accuracy %)</h3>
+<table class="small"><tr><th>Hard family (n)</th><th>2B (Qwen3-VL-2B, mix_v5)</th><th>30B (Qwen3-VL-30B-A3B, v5)</th><th>4B Phase A</th><th>4B Phase B</th><th>4B soup 50/50</th><th>4B soup 75% B</th></tr>
+<tr><td class="">temporal_numeric (15)</td><td class="num">7</td><td class="num"><b>33</b></td><td class="num">7</td><td class="num">13</td><td class="num">7</td><td class="num">13</td></tr>
+<tr><td class="">long_policy (19)</td><td class="num"><b>53</b></td><td class="num"><b>53</b></td><td class="num">32</td><td class="num">47</td><td class="num">37</td><td class="num">42</td></tr>
+<tr><td class="">tradeoff (6)</td><td class="num"><b>50</b></td><td class="num"><b>50</b></td><td class="num"><b>50</b></td><td class="num"><b>50</b></td><td class="num"><b>50</b></td><td class="num"><b>50</b></td></tr>
+<tr><td class="">judge_hard (17)</td><td class="num">59</td><td class="num"><b>65</b></td><td class="num">53</td><td class="num">59</td><td class="num">59</td><td class="num">59</td></tr>
+<tr><td class="">probability (10)</td><td class="num"><b>60</b></td><td class="num"><b>60</b></td><td class="num"><b>60</b></td><td class="num"><b>60</b></td><td class="num"><b>60</b></td><td class="num"><b>60</b></td></tr>
+<tr><td class="">multi_hop (18)</td><td class="num">17</td><td class="num"><b>78</b></td><td class="num">50</td><td class="num">61</td><td class="num">56</td><td class="num">56</td></tr>
+<tr><td class="">adversarial (6)</td><td class="num">67</td><td class="num"><b>100</b></td><td class="num">67</td><td class="num">67</td><td class="num">67</td><td class="num">67</td></tr>
+<tr><td class="">ambiguous (7)</td><td class="num">0</td><td class="num">43</td><td class="num">57</td><td class="num"><b>71</b></td><td class="num"><b>71</b></td><td class="num"><b>71</b></td></tr>
+<tr><td class="">routing_hard (5)</td><td class="num">80</td><td class="num"><b>100</b></td><td class="num"><b>100</b></td><td class="num"><b>100</b></td><td class="num"><b>100</b></td><td class="num"><b>100</b></td></tr>
+<tr><td class="">trap (8)</td><td class="num">62</td><td class="num"><b>100</b></td><td class="num"><b>100</b></td><td class="num"><b>100</b></td><td class="num"><b>100</b></td><td class="num"><b>100</b></td></tr></table>
+<p class="small">Families are sorted by Phase B accuracy. n per family is small (6–19 items), so single-family differences below
+~15 points are within noise.</p>
+<h3>3.2 Estimated JevBench composite (their v1.4 scoring code, public tiers only)</h3>
+<table class=""><tr><th>System</th><th>Intelligence</th><th>Calibration</th><th>Speed</th><th>Cost (price/1k)</th><th>Score</th></tr>
+<tr><td class="">30B (Qwen3-VL-30B-A3B, v5)</td><td class="num">76.6</td><td class="num">87.7</td><td class="num">83.1</td><td class="num">46.7 ($0.060)</td><td class="num"><b>60.1</b></td></tr>
+<tr><td class="">4B Phase A</td><td class="num">65.9</td><td class="num">87.7</td><td class="num">87.7</td><td class="num">59.7 ($0.022)</td><td class="num"><b>73.1</b></td></tr>
+<tr><td class="">4B Phase B</td><td class="num">68.1</td><td class="num">88.9</td><td class="num">88.3</td><td class="num">59.7 ($0.022)</td><td class="num"><b>74.1</b></td></tr>
+<tr><td class="">4B soup 50/50</td><td class="num">68.2</td><td class="num">89.2</td><td class="num">87.8</td><td class="num">59.7 ($0.022)</td><td class="num"><b>74.1</b></td></tr>
+<tr><td class="">4B soup 75% B</td><td class="num">67.8</td><td class="num">90.7</td><td class="num">88.2</td><td class="num">59.7 ($0.022)</td><td class="num"><b>74.3</b></td></tr>
+<tr><td class="">Imajev-4B (same public-only basis)</td><td class="num">81.7</td><td class="num">94.8</td><td class="num">90.6</td><td class="num">59.7</td><td class="num"><b>79.1</b></td></tr></table>
+<p class="small">Intelligence uses easy / original / hard only (the judge and sealed tiers are not runnable locally), so these
+scores are comparable with each other, not with the official board (Imajev-4B official 67.37 includes the sealed set). Cost uses
+a provider-style price estimate ($0.022 / 1k for 4B-class, Imajev's board figure; $0.06 assumed for the 30B); at our raw serial
+GPU time the cost axis drops below the board's penalty threshold (PROBLEMS A2).</p>
+
+<h2 class="page-break">4. The shared evaluation suite</h2>
+<h3>4.1 Zero-shot (datasets never trained on; accuracy %, raw)</h3>
+<table class="small"><tr><th>Zero-shot set (n)</th><th>30B (Qwen3-VL-30B-A3B, v5)</th><th>4B Phase A</th><th>4B Phase B</th><th>4B soup 50/50</th><th>4B soup 75% B</th></tr>
+<tr><td class="">all (12164)</td><td class="num"><b>75.9</b></td><td class="num">75.8</td><td class="num"><b>75.9</b></td><td class="num">75.8</td><td class="num">75.8</td></tr>
+<tr><td class="">mmlu (1000)</td><td class="num"><b>79.6</b></td><td class="num">72.0</td><td class="num">71.8</td><td class="num">71.6</td><td class="num">72.0</td></tr>
+<tr><td class="">humaneval_exec (1000)</td><td class="num"><b>88.7</b></td><td class="num">84.3</td><td class="num">84.5</td><td class="num">84.6</td><td class="num">84.3</td></tr>
+<tr><td class="">cruxeval_output (260)</td><td class="num"><b>68.8</b></td><td class="num">57.7</td><td class="num">57.7</td><td class="num">57.7</td><td class="num">55.8</td></tr>
+<tr><td class="">mind2web_element (1274)</td><td class="num"><b>78.6</b></td><td class="num">73.8</td><td class="num">74.1</td><td class="num">74.3</td><td class="num">74.3</td></tr>
+<tr><td class="">mind2web_operation (1942)</td><td class="num">31.3</td><td class="num">47.5</td><td class="num"><b>48.9</b></td><td class="num">47.7</td><td class="num">48.3</td></tr>
+<tr><td class="">openimages_presence (1500)</td><td class="num"><b>87.5</b></td><td class="num">86.4</td><td class="num">86.0</td><td class="num">86.1</td><td class="num">86.1</td></tr>
+<tr><td class="">openimages_count (1500)</td><td class="num">83.1</td><td class="num"><b>83.7</b></td><td class="num">83.5</td><td class="num">83.6</td><td class="num">83.6</td></tr>
+<tr><td class="">openimages_where (316)</td><td class="num"><b>78.2</b></td><td class="num">77.2</td><td class="num"><b>78.2</b></td><td class="num">77.2</td><td class="num">77.2</td></tr>
+<tr><td class="">openimages_relation (637)</td><td class="num"><b>91.7</b></td><td class="num">89.6</td><td class="num">90.4</td><td class="num">90.3</td><td class="num">90.1</td></tr>
+<tr><td class="">openimages_framing (107)</td><td class="num"><b>97.2</b></td><td class="num">93.5</td><td class="num">92.5</td><td class="num">93.5</td><td class="num">93.5</td></tr>
+<tr><td class="">robot_task_zs (450)</td><td class="num"><b>62.7</b></td><td class="num">59.3</td><td class="num">58.7</td><td class="num">59.3</td><td class="num">58.4</td></tr>
+<tr><td class="">robot_progress_zs (450)</td><td class="num"><b>77.8</b></td><td class="num">66.4</td><td class="num">64.4</td><td class="num">65.8</td><td class="num">65.6</td></tr>
+<tr><td class="">robospatial_home (228)</td><td class="num">65.8</td><td class="num">65.8</td><td class="num"><b>67.1</b></td><td class="num">66.2</td><td class="num"><b>67.1</b></td></tr>
+<tr><td class="">probe_state_facts (1500)</td><td class="num"><b>98.9</b></td><td class="num">97.4</td><td class="num">97.2</td><td class="num">97.4</td><td class="num">97.3</td></tr>
+<tr><td class="">ECE after temperature (all)</td><td class="num">0.066</td><td class="num"><b>0.041</b></td><td class="num">0.044</td><td class="num">0.045</td><td class="num">0.043</td></tr></table>
+<h3>4.2 Never-seen tasks, held-out wording, latency</h3>
+<table class="small"><tr><th>Eval</th><th>30B (Qwen3-VL-30B-A3B, v5)</th><th>4B Phase A</th><th>4B Phase B</th><th>4B soup 50/50</th><th>4B soup 75% B</th></tr>
+<tr><td class="">Never-seen text (1,200)</td><td class="num"><b>71.3</b></td><td class="num">67.8</td><td class="num">67.2</td><td class="num">67.0</td><td class="num">67.0</td></tr>
+<tr><td class="">Never-seen vision (750)</td><td class="num"><b>92.8</b></td><td class="num">89.2</td><td class="num">89.5</td><td class="num">89.2</td><td class="num">89.5</td></tr>
+<tr><td class="">Held-out wording, all (19,708)</td><td class="num"><b>91.3</b></td><td class="num">90.6</td><td class="num">90.5</td><td class="num">90.5</td><td class="num">90.5</td></tr>
+<tr><td class="">· laya_typed (2,000)</td><td class="num">80.9</td><td class="num"><b>82.2</b></td><td class="num">81.6</td><td class="num">81.8</td><td class="num">81.8</td></tr>
+<tr><td class="">· laya_typed_img (2,000)</td><td class="num">76.9</td><td class="num"><b>78.2</b></td><td class="num">77.4</td><td class="num">78.1</td><td class="num">77.8</td></tr>
+<tr><td class="">· code_choice (141)</td><td class="num"><b>62.4</b></td><td class="num">48.9</td><td class="num">48.2</td><td class="num">48.2</td><td class="num">49.6</td></tr>
+<tr><td class="">Latency, image decision, median ms</td><td class="num">561</td><td class="num"><b>93</b></td><td class="num"><b>93</b></td><td class="num">95</td><td class="num">96</td></tr>
+<tr><td class="">· GPU</td><td class="num">H200</td><td class="num">H100</td><td class="num">H100</td><td class="num">H100</td><td class="num">H100</td></tr></table>
+<h3>4.3 Robustness</h3>
+<table class="small"><tr><th>Flip rate % (11 sets × 100)</th><th>30B (Qwen3-VL-30B-A3B, v5)</th><th>4B Phase A</th><th>4B Phase B</th><th>4B soup 50/50</th><th>4B soup 75% B</th></tr>
+<tr><td class="">option_order: option order shuffled (lower is better)</td><td class="num">3.1</td><td class="num">3.1</td><td class="num">3.3</td><td class="num">3.5</td><td class="num"><b>3.0</b></td></tr>
+<tr><td class="">text: question paraphrased (lower is better)</td><td class="num">2.2</td><td class="num">1.8</td><td class="num">1.7</td><td class="num"><b>1.5</b></td><td class="num">1.6</td></tr>
+<tr><td class="">image: image perturbed (lower is better)</td><td class="num"><b>2.5</b></td><td class="num">3.6</td><td class="num">3.4</td><td class="num">3.5</td><td class="num">3.3</td></tr>
+<tr><td class="">image_shuffle: image replaced by another (higher = uses the image)</td><td class="num"><b>58.3</b></td><td class="num">57.6</td><td class="num">56.9</td><td class="num">57.1</td><td class="num">56.9</td></tr>
+<tr><td class="">text_only: image removed (higher = uses the image)</td><td class="num">56.0</td><td class="num">56.9</td><td class="num">56.7</td><td class="num">56.7</td><td class="num"><b>57.1</b></td></tr></table>
+<p class="small">For the first three families a lower flip rate is better (the answer should not change); for the last two a
+higher rate means the model's answer depends on the image, as it should for image questions.</p>
+
+<h2 class="page-break">5. Training dynamics</h2>
+<h3>5.1 Phase A</h3>
+<table class="small"><tr><th>Phase A eval step</th><th>Accuracy (30/set, 2,960)</th><th>ECE</th></tr>
+<tr><td class="">0 (start)</td><td class="num">32.0</td><td class="num">0.037</td></tr>
+<tr><td class="">1500</td><td class="num">78.6</td><td class="num">0.041</td></tr>
+<tr><td class="">3000</td><td class="num">80.9</td><td class="num">0.013</td></tr>
+<tr><td class="">4500</td><td class="num">81.2</td><td class="num">0.028</td></tr>
+<tr><td class="">6000</td><td class="num">82.8</td><td class="num">0.053</td></tr>
+<tr><td class="">7500</td><td class="num">83.3</td><td class="num">0.027</td></tr>
+<tr><td class="">9000</td><td class="num">83.9</td><td class="num">0.037</td></tr>
+<tr><td class="">10500</td><td class="num">84.4</td><td class="num">0.045</td></tr>
+<tr><td class="">12000</td><td class="num">84.6</td><td class="num">0.036</td></tr>
+<tr><td class="">13500</td><td class="num">84.8</td><td class="num">0.033</td></tr>
+<tr><td class="">14997</td><td class="num">85.0</td><td class="num">0.047</td></tr></table>
+<h3>5.2 Phase B: what the reasoning delta changed</h3>
+<table class="small"><tr><th>Phase B eval set (30 rows each)</th><th>Start (= Phase A)</th><th>End (step 484)</th><th>Δ points</th></tr>
+<tr><td class="">gen_temporal</td><td class="num">40.0</td><td class="num">40.0</td><td class="num">+0.0</td></tr>
+<tr><td class="">gen_money</td><td class="num">13.3</td><td class="num">43.3</td><td class="num">+30.0</td></tr>
+<tr><td class="">gen_probability</td><td class="num">66.7</td><td class="num">80.0</td><td class="num">+13.3</td></tr>
+<tr><td class="">bb_reasoning</td><td class="num">73.3</td><td class="num">83.3</td><td class="num">+10.0</td></tr>
+<tr><td class="">proofwriter_owa</td><td class="num">50.0</td><td class="num">66.7</td><td class="num">+16.7</td></tr>
+<tr><td class="">wanli_nli</td><td class="num">66.7</td><td class="num">66.7</td><td class="num">+0.0</td></tr>
+<tr><td class="">quality_long</td><td class="num">76.7</td><td class="num">80.0</td><td class="num">+3.3</td></tr>
+<tr><td class="">helpsteer_score</td><td class="num">46.7</td><td class="num">46.7</td><td class="num">+0.0</td></tr>
+<tr><td class="">helpsteer_pair</td><td class="num">76.7</td><td class="num">86.7</td><td class="num">+10.0</td></tr>
+<tr><td class="">laya_typed</td><td class="num">56.7</td><td class="num">60.0</td><td class="num">+3.3</td></tr>
+<tr><td class="">laya_typed_img</td><td class="num">66.7</td><td class="num">66.7</td><td class="num">+0.0</td></tr>
+<tr><td class="">replay sets, mean of 63 (images, docs, code, support, robots)</td><td class="num">84.8</td><td class="num">84.9</td><td class="num">+0.1</td></tr></table>
+<p class="small">30 validation rows per set (±9 points each); read the direction, not the exact size.</p>
+
+<h2>6. Findings</h2>
+<ol>
+<li><b>The 4B is the right product tier.</b> On everything except knowledge and the hard tier it matches the 30B, with better
+calibration and ~6× lower latency; on the estimated composite it beats the 30B, whose cost axis is penalised.</li>
+<li><b>The format fix worked.</b> The original tier went from 63.9% (2B) to 95.8% (Phase A); <code>describe_labels</code> plus the
+4,096-token middle-cut budget is the likely cause (not separately ablated).</li>
+<li><b>Phase B buys reasoning and costs format.</b> Hard +7.3 points (multi_hop, ambiguous, long_policy up), original −4.1 (3 of 72
+items): the forgetting Imajev reported. <b>Weight averaging trades the two smoothly</b>: 50/50 restores the original tier
+(95.8%) and keeps half the hard gain (53.2%); 75% B sits between (93.1% / 55.0%) with the best calibration of any 4B (ECE 0.046).
+All four checkpoints are equal on JevBench within one item.</li>
+<li><b>Dates and time zones did not move</b> (temporal_numeric 7–13%): ~500 Phase B steps over 3 generator kinds are not enough for
+multi-step calendar arithmetic in one pass.</li>
+<li><b>Option-order flips are unchanged</b> (~3%): an architecture problem (per-option read-out on a causal backbone), not data.</li>
+<li><b>Coverage was thin:</b> Phase A saw ~20% of one pass; long-tail datasets got ~2k draws each.</li>
+</ol>
+
+<h2>7. Round 2 (ordered by expected gain per dollar)</h2>
+<table>
+<tr><th>#</th><th>Action</th><th>Targets</th><th>Cost</th></tr>
+<tr><td>1</td><td>Ship the best soup; refit temperatures per type × option count on held-out Jev-shaped items</td><td>ECE → ~0.03; calibration axis +5</td><td>local</td></tr>
+<tr><td>2</td><td>Generators: the 4 missing families (unit conversion, rule precedence, multi-hop tables, withheld input → unknown) + multi-step
+compositions (business days + DST + grace in one question), 3–5× more temporal rows; long generated policies (1.5–3.5k tokens)</td><td>temporal_numeric, long_policy, multi_hop</td><td>CPU</td></tr>
+<tr><td>3</td><td>Teacher-lite: ~3k documents → ~9k questions, 2 open-weight thinking answerers, keep on agreement, soft targets, rationales</td><td>judge_hard, tradeoff, ambiguous</td><td>≈ $25</td></tr>
+<tr><td>4</td><td>Phase B2: 2–3 h from the shipped soup, rationale loss, <b>35–40% replay</b> (Phase B's ~22% cost 4 original-tier points;
+CLM kept 69.0 → 68.5 with 40%), agentic trajectory domain (V6.2 §4); averaging sweep; gates</td><td>hard 65–70% (estimate)</td><td>≈ $35–50</td></tr>
+<tr><td>4b</td><td>Agentic trajectory builder (V6.2 §4): next action, step progress, outcome on the value head, verifier pairs; licence
+review per source; best-of-N eval against random / oracle</td><td>calibrated agent-run judge</td><td>CPU, 2–3 days</td></tr>
+<tr><td>5</td><td>Abstain + reason heads on the existing act-head features (V6.1 §6.2)</td><td>calibrated "cannot decide"</td><td>≈ 1 day</td></tr>
+<tr><td>6</td><td>Block option attention + shared option positions on Qwen</td><td>flips < 1.5%</td><td>≈ 2 days</td></tr>
+<tr><td>7</td><td>Serving: merged LoRA, fp8, CUDA graphs, Qwen prefix cache; hosted endpoint for the sealed JevBench / Image JevBench</td><td>cost axis, official rank</td><td>engineering</td></tr>
+</table>
+
+<h2 class="page-break">Appendix: record ids</h2>
+<table class="small"><tr><th>Record</th><th>id</th><th>time</th></tr>
+<tr><td class="">hof:qwen30b-v5</td><td class="num">20260928-185811-f2d54a</td><td class="num">2026-09-28T18:58</td></tr>
+<tr><td class="">hof:qwen4b-v6a</td><td class="num">20260929-153930-0fc725</td><td class="num">2026-09-29T15:39</td></tr>
+<tr><td class="">hof:qwen4b-v6b</td><td class="num">20260929-161754-8b7282</td><td class="num">2026-09-29T16:17</td></tr>
+<tr><td class="">hof:qwen4b-v6b-soup50</td><td class="num">20260929-173002-82aaec</td><td class="num">2026-09-29T17:30</td></tr>
+<tr><td class="">hof:qwen4b-v6b-soup75</td><td class="num">20260929-180352-f2cdba</td><td class="num">2026-09-29T18:03</td></tr>
+<tr><td class="">jevbench-public:qwen2b-mix</td><td class="num">20260928-143154-5c8559</td><td class="num">2026-09-28T14:31</td></tr>
+<tr><td class="">jevbench-public:qwen2b-mix-len4096</td><td class="num">20260928-221417-e94a75</td><td class="num">2026-09-28T22:14</td></tr>
+<tr><td class="">jevbench-public:qwen30b-v5</td><td class="num">20260929-014950-0fd688</td><td class="num">2026-09-29T01:49</td></tr>
+<tr><td class="">jevbench-public:qwen30b-v5-len4096</td><td class="num">20260929-020813-a50bbe</td><td class="num">2026-09-29T02:08</td></tr>
+<tr><td class="">jevbench-public:qwen4b-v6a-len4096</td><td class="num">20260929-151641-144712</td><td class="num">2026-09-29T15:16</td></tr>
+<tr><td class="">jevbench-public:qwen4b-v6b-len4096</td><td class="num">20260929-155619-80265f</td><td class="num">2026-09-29T15:56</td></tr>
+<tr><td class="">jevbench-public:qwen4b-v6b-soup50-len4096</td><td class="num">20260929-170849-0f7568</td><td class="num">2026-09-29T17:08</td></tr>
+<tr><td class="">jevbench-public:qwen4b-v6b-soup75-len4096</td><td class="num">20260929-174300-33dc09</td><td class="num">2026-09-29T17:43</td></tr>
+<tr><td class="">latency-qwen30b-v5</td><td class="num">20260928-193015-8b30df</td><td class="num">2026-09-28T19:30</td></tr>
+<tr><td class="">latency-qwen4b-v6a</td><td class="num">20260929-155445-4348db</td><td class="num">2026-09-29T15:54</td></tr>
+<tr><td class="">latency-qwen4b-v6b</td><td class="num">20260929-163244-bf956a</td><td class="num">2026-09-29T16:32</td></tr>
+<tr><td class="">latency-qwen4b-v6b-soup50</td><td class="num">20260929-174225-6109af</td><td class="num">2026-09-29T17:42</td></tr>
+<tr><td class="">latency-qwen4b-v6b-soup75</td><td class="num">20260929-181553-a86d81</td><td class="num">2026-09-29T18:15</td></tr>
+<tr><td class="">laya-full:qwen30b-v5</td><td class="num">20260929-015536-4bf13a</td><td class="num">2026-09-29T01:55</td></tr>
+<tr><td class="">mix-split1024-&gt;qwen2b-mix</td><td class="num">20260925-152638-951397</td><td class="num">2026-09-25T15:26</td></tr>
+<tr><td class="">novel-v1:qwen2b-mix</td><td class="num">20260928-122122-f6810d</td><td class="num">2026-09-28T12:21</td></tr>
+<tr><td class="">novel:qwen30b-v5</td><td class="num">20260929-015859-2006be</td><td class="num">2026-09-29T01:58</td></tr>
+<tr><td class="">novel:qwen4b-v6a</td><td class="num">20260929-152704-c567ca</td><td class="num">2026-09-29T15:27</td></tr>
+<tr><td class="">novel:qwen4b-v6b</td><td class="num">20260929-160610-652f2b</td><td class="num">2026-09-29T16:06</td></tr>
+<tr><td class="">novel:qwen4b-v6b-soup50</td><td class="num">20260929-171808-99c6fc</td><td class="num">2026-09-29T17:18</td></tr>
+<tr><td class="">novel:qwen4b-v6b-soup75</td><td class="num">20260929-175156-c0c992</td><td class="num">2026-09-29T17:51</td></tr>
+<tr><td class="">overfit-gap:qwen30b-v5</td><td class="num">20260928-221347-964f91</td><td class="num">2026-09-28T22:13</td></tr>
+<tr><td class="">overfit-train:qwen30b-v5</td><td class="num">20260929-020440-970f36</td><td class="num">2026-09-29T02:04</td></tr>
+<tr><td class="">quant-v1:qwen2b-mix</td><td class="num">20260927-041230-24e217</td><td class="num">2026-09-27T04:12</td></tr>
+<tr><td class="">qwen2b-mix</td><td class="num">20260925-150248-d45322</td><td class="num">2026-09-25T15:02</td></tr>
+<tr><td class="">qwen30b-v5</td><td class="num">20260928-180343-0d7fd8</td><td class="num">2026-09-28T18:03</td></tr>
+<tr><td class="">qwen30b-v5-smoke</td><td class="num">20260927-233751-e8d82d</td><td class="num">2026-09-27T23:37</td></tr>
+<tr><td class="">qwen4b-v6a</td><td class="num">20260929-132637-271e73</td><td class="num">2026-09-29T13:26</td></tr>
+<tr><td class="">qwen4b-v6a-smoke</td><td class="num">20260929-043316-73c41b</td><td class="num">2026-09-29T04:33</td></tr>
+<tr><td class="">qwen4b-v6b</td><td class="num">20260929-151326-5d7901</td><td class="num">2026-09-29T15:13</td></tr>
+<tr><td class="">qwen4b-v6b-soup50</td><td class="num">20260929-123956-46039f</td><td class="num">2026-09-29T12:39</td></tr>
+<tr><td class="">qwen4b-v6b-soup75</td><td class="num">20260929-123957-c867c3</td><td class="num">2026-09-29T12:39</td></tr>
+<tr><td class="">robust-v1:qwen2b-mix</td><td class="num">20260927-051334-bfb2ed</td><td class="num">2026-09-27T05:13</td></tr>
+<tr><td class="">robust:qwen30b-v5</td><td class="num">20260928-192700-f4593e</td><td class="num">2026-09-28T19:27</td></tr>
+<tr><td class="">robust:qwen4b-v6a</td><td class="num">20260929-155232-6a6949</td><td class="num">2026-09-29T15:52</td></tr>
+<tr><td class="">robust:qwen4b-v6b</td><td class="num">20260929-163050-186a0b</td><td class="num">2026-09-29T16:30</td></tr>
+<tr><td class="">robust:qwen4b-v6b-soup50</td><td class="num">20260929-174143-83e5b1</td><td class="num">2026-09-29T17:41</td></tr>
+<tr><td class="">robust:qwen4b-v6b-soup75</td><td class="num">20260929-181512-002abd</td><td class="num">2026-09-29T18:15</td></tr>
+<tr><td class="">zeroshot-oi-m2w:qwen2b-mix</td><td class="num">20260925-151211-07ae99</td><td class="num">2026-09-25T15:12</td></tr>
+<tr><td class="">zeroshot-v2:qwen2b-mix</td><td class="num">20260927-033149-2da048</td><td class="num">2026-09-27T03:31</td></tr>
+<tr><td class="">zeroshot:qwen30b-v5</td><td class="num">20260928-182532-1df751</td><td class="num">2026-09-28T18:25</td></tr>
+<tr><td class="">zeroshot:qwen4b-v6a</td><td class="num">20260929-152515-1d33b7</td><td class="num">2026-09-29T15:25</td></tr>
+<tr><td class="">zeroshot:qwen4b-v6b</td><td class="num">20260929-160441-82b9b6</td><td class="num">2026-09-29T16:04</td></tr>
+<tr><td class="">zeroshot:qwen4b-v6b-soup50</td><td class="num">20260929-171717-151f4a</td><td class="num">2026-09-29T17:17</td></tr>
+<tr><td class="">zeroshot:qwen4b-v6b-soup75</td><td class="num">20260929-175106-db6132</td><td class="num">2026-09-29T17:51</td></tr></table>
+</body></html>

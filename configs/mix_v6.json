@@ -1,0 +1,230 @@
+{
+ "version": "mix_v6",
+ "note": "mix_v5 + every trainable set built since (open reasoning sets, TyDi, WikiSQL execution, SWE family, PrimeVul severity) in a new reasoning domain and the code / reading domains; vqa_rad down-weighted (E5: +19 train-val gap). Phase A of the 2026-09-29 4B night run: --augment (describe_labels 0.3), --max-len 4096.",
+ "alpha": 0.5,
+ "max_passes": 2,
+ "domains": {
+  "photo": {
+   "share": 0.1,
+   "datasets": [
+    "aokvqa",
+    "vqav2_yesno",
+    "textvqa",
+    "vizwiz_answerable",
+    "pets",
+    "eurosat",
+    "vqa_rad",
+    "oi_presence",
+    "oi_count"
+   ],
+   "dataset_weight": {
+    "oi_count": 2.0,
+    "vqa_rad": 0.5
+   }
+  },
+  "document": {
+   "share": 0.08,
+   "datasets": [
+    "doclaynet_type",
+    "doclaynet_layout",
+    "doclaynet_read_small",
+    "doclaynet_read_large",
+    "cord_total",
+    "synth_invoice_doc",
+    "synth_refund_doc",
+    "synth_access_doc",
+    "synth_alert_doc",
+    "pii_detect",
+    "chart_qa",
+    "chart_score"
+   ],
+   "dataset_weight": {
+    "chart_qa": 1.5,
+    "chart_score": 2.0
+   }
+  },
+  "ui": {
+   "share": 0.06,
+   "datasets": [
+    "synth_ui",
+    "rico_screenqa"
+   ]
+  },
+  "quality": {
+   "share": 0.05,
+   "datasets": [
+    "synth_quality",
+    "photo_condition"
+   ]
+  },
+  "text_decision": {
+   "share": 0.07,
+   "datasets": [
+    "synth_invoice",
+    "synth_refund",
+    "synth_access",
+    "synth_alert",
+    "sms_spam",
+    "go_emotions",
+    "review_polarity"
+   ]
+  },
+  "support": {
+   "share": 0.08,
+   "datasets": [
+    "banking77",
+    "clinc_intent",
+    "clinc_scope",
+    "support_intent",
+    "massive_intent",
+    "support_verticals",
+    "minds14_intent",
+    "sgd_intent",
+    "multiwoz_intent"
+   ]
+  },
+  "safety": {
+   "share": 0.06,
+   "datasets": [
+    "prompt_injection",
+    "jailbreak",
+    "civil_toxicity",
+    "aegis_safety",
+    "hate_score",
+    "salad_category"
+   ],
+   "dataset_weight": {
+    "hate_score": 3.0
+   }
+  },
+  "agent": {
+   "share": 0.05,
+   "datasets": [
+    "tool_select",
+    "tool_relevant"
+   ]
+  },
+  "reading": {
+   "share": 0.05,
+   "datasets": [
+    "boolq",
+    "snli",
+    "vitaminc",
+    "squad_answerable",
+    "tydiqa_answerable"
+   ]
+  },
+  "text_knowledge": {
+   "share": 0.06,
+   "datasets": [
+    "commonsense_qa",
+    "openbookqa",
+    "arc",
+    "aqua_math"
+   ]
+  },
+  "multilingual": {
+   "share": 0.06,
+   "datasets": [
+    "belebele",
+    "xcopa",
+    "xwinograd",
+    "tweet_sentiment_ml"
+   ]
+  },
+  "code": {
+   "share": 0.13,
+   "datasets": [
+    "code_contests",
+    "code_choice",
+    "code_defect",
+    "synth_shell_risk",
+    "juliet_cwe",
+    "juliet_pair",
+    "primevul_cwe",
+    "primevul_pair",
+    "code_exec_pass",
+    "code_exec_pair",
+    "code_exec_output",
+    "commit_message",
+    "conala_snippet",
+    "taco_exec_pass",
+    "taco_exec_pair",
+    "wikisql_check",
+    "wikisql_pair",
+    "swe_file_loc",
+    "swe_patch_match",
+    "swe_test_fail",
+    "primevul_severity"
+   ],
+   "dataset_weight": {
+    "code_defect": 0.3
+   }
+  },
+  "spatial": {
+   "share": 0.02,
+   "datasets": [
+    "oi_where",
+    "oi_relation",
+    "oi_framing"
+   ]
+  },
+  "robotics": {
+   "share": 0.04,
+   "datasets": [
+    "robot_task",
+    "robot_progress"
+   ]
+  },
+  "laya_typed": {
+   "share": 0.09,
+   "datasets": [
+    "laya_typed",
+    "laya_typed_img",
+    "laya_typed_var",
+    "laya_typed_img_var"
+   ]
+  },
+  "variety": {
+   "share": 0.02,
+   "datasets": [
+    "synth_invoice_var",
+    "synth_refund_var",
+    "synth_access_var",
+    "synth_alert_var",
+    "synth_invoice_doc_var",
+    "synth_refund_doc_var",
+    "synth_shell_risk_var",
+    "synth_ui_var",
+    "synth_quality_var",
+    "banking77_var",
+    "clinc_intent_var",
+    "support_intent_var",
+    "commonsense_qa_var",
+    "arc_var",
+    "oi_count_var",
+    "code_choice_var"
+   ],
+   "dataset_weight": {
+    "synth_quality_var": 2.0,
+    "laya_typed_var": 2.0,
+    "laya_typed_img_var": 2.0,
+    "oi_count_var": 2.0
+   }
+  },
+  "reasoning": {
+   "share": 0.08,
+   "datasets": [
+    "gsm8k_choice",
+    "svamp_choice",
+    "math_choice",
+    "numina_choice",
+    "qasc_choice",
+    "quartz_choice",
+    "ropes_choice",
+    "strategyqa",
+    "winogrande"
+   ]
+  }
+ }
+}

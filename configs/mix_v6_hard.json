@@ -1,0 +1,144 @@
+{
+ "version": "mix_v6_hard",
+ "alpha": 0.5,
+ "max_passes": 3,
+ "note": "Phase B (short hard-reasoning delta) of the 2026-09-29 4B night run: exact generators + licensed reasoning sets (~60% of draws), Jev-style laya_typed, and replay of the Phase A domains (images included) so the delta does not erase them (V6.1 \u00a74.6).",
+ "domains": {
+  "gen_exact": {
+   "share": 0.22,
+   "datasets": [
+    "gen_temporal",
+    "gen_money",
+    "gen_probability"
+   ]
+  },
+  "logic": {
+   "share": 0.18,
+   "datasets": [
+    "bb_reasoning",
+    "proofwriter_owa",
+    "wanli_nli"
+   ]
+  },
+  "long_doc": {
+   "share": 0.08,
+   "datasets": [
+    "quality_long"
+   ]
+  },
+  "judge": {
+   "share": 0.08,
+   "datasets": [
+    "helpsteer_score",
+    "helpsteer_pair"
+   ]
+  },
+  "math_reason": {
+   "share": 0.06,
+   "datasets": [
+    "gsm8k_choice",
+    "svamp_choice",
+    "math_choice",
+    "strategyqa",
+    "ropes_choice"
+   ]
+  },
+  "laya_typed": {
+   "share": 0.12,
+   "datasets": [
+    "laya_typed",
+    "laya_typed_img",
+    "laya_typed_var",
+    "laya_typed_img_var"
+   ]
+  },
+  "replay_photo": {
+   "share": 0.05,
+   "datasets": [
+    "aokvqa",
+    "vqav2_yesno",
+    "textvqa",
+    "vizwiz_answerable",
+    "pets",
+    "eurosat",
+    "vqa_rad",
+    "oi_presence",
+    "oi_count"
+   ]
+  },
+  "replay_document": {
+   "share": 0.05,
+   "datasets": [
+    "doclaynet_type",
+    "doclaynet_layout",
+    "doclaynet_read_small",
+    "doclaynet_read_large",
+    "cord_total",
+    "synth_invoice_doc",
+    "synth_refund_doc",
+    "synth_access_doc",
+    "synth_alert_doc",
+    "pii_detect",
+    "chart_qa",
+    "chart_score"
+   ]
+  },
+  "replay_ui": {
+   "share": 0.03,
+   "datasets": [
+    "synth_ui",
+    "rico_screenqa"
+   ]
+  },
+  "replay_code": {
+   "share": 0.04,
+   "datasets": [
+    "code_contests",
+    "code_choice",
+    "code_defect",
+    "synth_shell_risk",
+    "juliet_cwe",
+    "juliet_pair",
+    "primevul_cwe",
+    "primevul_pair",
+    "code_exec_pass",
+    "code_exec_pair",
+    "code_exec_output",
+    "commit_message",
+    "conala_snippet",
+    "taco_exec_pass",
+    "taco_exec_pair",
+    "wikisql_check",
+    "wikisql_pair",
+    "swe_file_loc",
+    "swe_patch_match",
+    "swe_test_fail",
+    "primevul_severity"
+   ]
+  },
+  "replay_support": {
+   "share": 0.03,
+   "datasets": [
+    "banking77",
+    "clinc_intent",
+    "clinc_scope",
+    "support_intent",
+    "massive_intent",
+    "support_verticals",
+    "minds14_intent",
+    "sgd_intent",
+    "multiwoz_intent"
+   ]
+  },
+  "replay_spatial_robot": {
+   "share": 0.02,
+   "datasets": [
+    "oi_where",
+    "oi_relation",
+    "oi_framing",
+    "robot_task",
+    "robot_progress"
+   ]
+  }
+ }
+}
